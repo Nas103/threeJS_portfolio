@@ -1,0 +1,7 @@
+.nav-link {
+  @apply text-secondary hover:text-white text-[18px] font-medium cursor-pointer;
+}
+
+.mobile-nav {
+  @apply flex justify-end items-center flex-1;
+} 
