@@ -159,9 +159,16 @@
 }
 
 .bg-primary {
-  @apply bg-[#050816];
+  background-color: #050816;
 }
 
 .bg-hero-pattern {
   background-image: url('/src/assets/herobg.png');
+}
+
+.orange-gradient-text {
+  background: linear-gradient(to right, #FFA500, #e4e126);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }

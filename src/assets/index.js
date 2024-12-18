@@ -1,4 +1,4 @@
-import logo from "./logo.svg";
+import logo from "./RN.png";
 import backend from "./backend.png";
 import creator from "./creator.png";
 import mobile from "./mobile.png";
@@ -25,10 +25,18 @@ import meta from "./company/meta.png";
 import shopify from "./company/shopify.png";
 import starbucks from "./company/starbucks.png";
 import tesla from "./company/tesla.png";
+import alx from "./company/alx.png";
+import allied from "./company/allied.png";
+import ibm from "./company/ibm.png";
+import skillup from "./company/skillup.png";
+import free from "./company/free.png";
 
 import carrent from "./carrent.png";
 import jobit from "./jobit.png";
 import tripguide from "./tripguide.png";
+import calorie from "./calorie.jpeg";
+import xora from "./xora.png";
+import rpg from "./rpg.jpeg";
 
 export {
   logo,
@@ -56,7 +64,15 @@ export {
   shopify,
   starbucks,
   tesla,
+  alx,
+  allied,
+  ibm,
+  skillup,
+  free,
   carrent,
   jobit,
   tripguide,
+  calorie,
+  xora,
+  rpg,
 };

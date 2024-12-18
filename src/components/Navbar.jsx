@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { styles } from "../styles.js";
 import { navLinks } from "../constants/index.js";
 import { logo, menu, close } from "../assets";
-import navStyles from './Navbar.module.css';
 
 const Navbar = () => {
   const [active, setActive] = useState("");
@@ -49,10 +48,10 @@ const Navbar = () => {
             window.scrollTo(0, 0);
           }}
         >
-          <img src={logo} alt='logo' className='w-9 h-9 object-contain' />
+          <img src={logo} alt='logo' className='w-9 h-9 object-contain rounded-full' />
           <p className='text-white text-[18px] font-bold cursor-pointer flex '>
             Rhulani &nbsp;
-            <span className='sm:block hidden'></span>
+            <span className='sm:block hidden'>| Nas_Code</span>
           </p>
         </Link>
 
@@ -60,20 +59,17 @@ const Navbar = () => {
           {navLinks.map((nav) => (
             <li
               key={nav.id}
-              className={navStyles['nav-link']}
+              className={`${
+                active === nav.title ? "text-white" : "text-secondary"
+              } hover:text-white text-[18px] font-medium cursor-pointer`}
               onClick={() => setActive(nav.title)}
             >
-              <a 
-                href={`#${nav.id}`}
-                onClick={(e) => handleClick(e, nav.id)}
-              >
-                {nav.title}
-              </a>
+              <a href={`#${nav.id}`}>{nav.title}</a>
             </li>
           ))}
         </ul>
 
-        <div className={navStyles['mobile-nav']}>
+        <div className='sm:hidden flex flex-1 justify-end items-center'>
           <img
             src={toggle ? close : menu}
             alt='menu'
