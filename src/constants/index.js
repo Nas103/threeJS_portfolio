@@ -32,6 +32,7 @@ import {
     skillup,
     free, calorie_app,
     rpg_game,
+    python,
 } from "../assets";
 
 export const navLinks = [
@@ -91,7 +92,7 @@ const technologies = [
     },
     {
         name: "Redux",
-        icon: redux,
+        icon: threejs,
     },
     {
         name: "Tailwind CSS",
@@ -107,7 +108,7 @@ const technologies = [
     },
     {
         name: "Three JS",
-        icon: threejs,
+        icon: python,
     },
     {
         name: "git",

@@ -39,6 +39,7 @@ import xora from "./xora.png";
 import rpg from "./rpg.jpeg";
 import calorie_app from "./calorie_app.jpeg";
 import rpg_game from "./rpg_game.jpeg";
+import python from "./tech/python.png";
 
 export {
   logo,
@@ -79,4 +80,5 @@ export {
   rpg,
   calorie_app,
   rpg_game,
+  python,
 };
