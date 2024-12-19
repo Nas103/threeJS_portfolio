@@ -30,7 +30,8 @@ import {
     rpg,
     ibm,
     skillup,
-    free,
+    free, calorie_app,
+    rpg_game,
 } from "../assets";
 
 export const navLinks = [
@@ -244,7 +245,7 @@ const projects = [
                 color: "pink-text-gradient",
             },
         ],
-        image: rpg,
+        image: rpg_game,
         source_code_link: "https://github.com/Nas103/rpgGame",
     },
     {
@@ -265,7 +266,7 @@ const projects = [
                 color: "pink-text-gradient",
             },
         ],
-        image: calorie,
+        image: calorie_app,
         source_code_link: "https://github.com/Nas103/Calorie-counter",
     },
 ];

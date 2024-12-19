@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react()],
   assetsInclude: ['**/*.gltf'],
   server: {
-    host: true
-  }
-})
+    host: true,
+  },
+  base: '/threeJS_portfolio/',
+});

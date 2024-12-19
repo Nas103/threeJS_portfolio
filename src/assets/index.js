@@ -37,6 +37,8 @@ import tripguide from "./tripguide.png";
 import calorie from "./calorie.jpeg";
 import xora from "./xora.png";
 import rpg from "./rpg.jpeg";
+import calorie_app from "./calorie_app.jpeg";
+import rpg_game from "./rpg_game.jpeg";
 
 export {
   logo,
@@ -75,4 +77,6 @@ export {
   calorie,
   xora,
   rpg,
+  calorie_app,
+  rpg_game,
 };
