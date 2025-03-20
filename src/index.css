@@ -161,6 +161,30 @@
 .bg-primary {
   background-color: #050816;
 }
+@keyframes color-change {
+  0% {
+    background-position: 0% 50%;
+    transform: scale(1);
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 50%;
+    transform: scale(1);
+  }
+}
+.heading-section p {
+  background: linear-gradient(to right, #ff803a, #092cba, #ff803a, #0725ae, #050816);
+  background-clip: text;
+  color: transparent;
+  font-size: 2.3rem;
+  background-size: 400% 400%;
+  animation: color-change 12s ease infinite;
+}
+.heading-section {
+  background: transparent;
+}
 
 .bg-hero-pattern {
   background-image: url('/src/assets/herobg.png');
