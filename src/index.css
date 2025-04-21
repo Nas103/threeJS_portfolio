@@ -161,6 +161,7 @@
 .bg-primary {
   background-color: #050816;
 }
+
 @keyframes color-change {
   0% {
     background-position: 0% 50%;
@@ -174,6 +175,7 @@
     transform: scale(1);
   }
 }
+
 .heading-section p {
   background: linear-gradient(to right, #ff803a, #092cba, #ff803a, #0725ae, #050816);
   background-clip: text;
@@ -182,6 +184,7 @@
   background-size: 400% 400%;
   animation: color-change 12s ease infinite;
 }
+
 .heading-section {
   background: transparent;
 }
@@ -195,4 +198,48 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Chat component styles */
+.typing-animation {
+  display: inline-block;
+  position: relative;
+}
+
+.typing-animation::after {
+  content: "";
+  position: absolute;
+  right: -10px;
+  width: 7px;
+  height: 7px;
+  background: white;
+  border-radius: 50%;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Scrollbar styling for the chat */
+.overflow-y-auto::-webkit-scrollbar {
+  width: 6px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
 }

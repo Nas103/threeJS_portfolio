@@ -48,6 +48,10 @@ export const navLinks = [
         id: "contact",
         title: "Contact",
     },
+    {
+        id: "chat",
+        title: "AI Chat",
+    },
 ];
 
 const services = [
