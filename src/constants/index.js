@@ -33,6 +33,7 @@ import {
     free, calorie_app,
     rpg_game,
     python,
+    intelligai,
 } from "../assets";
 
 export const navLinks = [
@@ -43,6 +44,10 @@ export const navLinks = [
     {
         id: "work",
         title: "Work",
+    },
+    {
+        id: "certifications",
+        title: "Certifications",
     },
     {
         id: "contact",
@@ -130,55 +135,45 @@ const technologies = [
 
 const experiences = [
     {
-        title: "Software Engineering",
-        company_name: "ALX Bootcamp",
+        title: "Software Engineer Apprentice",
+        company_name: "alx",
         icon: alx,
         iconBg: "#E6DEDD",
-        date: "October 2023 - January 2025",
+        date: "2023 - 2025",
         points: [
-            "Engineered scalable web applications, emphasizing performance and usability.",
-            "Collaborated with multidisciplinary teams to transform requirements into deliverable features.",
-            "Applied innovative approaches to ensure mobile-first design and seamless functionality.",
-            "Championed best coding practices through active participation in peer reviews.",
+            "Developed software solutions using Agile methodology for alx, achieving a 30% reduction in maintenance costs by focusing on user requirements and delivering high-quality code.",
+            "Collaborated with cross-functional teams to design and test scalable software systems, improving user satisfaction by 25% through enhanced user experiences and optimized workflows.",
+            "Implemented DevOps practices to increase software reliability and efficiency, resulting in a 40% improvement in deployment speed and a 20% reduction in downtime.",
+            "Developed a command-line shell in C to emulate popular Unix shells, streamlining interactive program management and increasing productivity by 35% for end-users.",
+            "Worked with database structures such as SQL, MySQL, PostgreSQL, Redis, and ES6, improving database query performance by 30% through efficient schema design and indexing.",
+            "Collaborated with team members to ensure seamless functionality and a user-friendly experience, contributing to a 25% boost in user engagement metrics.",
+            "Implemented efficient coding practices that optimized performance and reduced load times by 40%, enhancing overall user experience.",
         ],
     },
     {
-        title: "IBM iOS & Android Developer",
-        company_name: "SkillUp EdTech",
-        icon: skillup,
-        iconBg: "#E6DEDD",
-        date: "Jan 2024 - Dec 2024",
-        points: [
-            "Developed native and cross-platform mobile applications for iOS and Android using Swift, Kotlin, and Flutter.",
-            "Integrated mobile-specific features such as GPS, notifications, and biometric authentication for enhanced functionality.",
-            "Collaborated with UI/UX teams to design seamless and intuitive user experiences tailored to mobile platforms.",
-            "Conducted performance optimizations, reducing app load times and improving overall responsiveness.",
-        ],
-    },
-    {
-        title: "Web Development",
-        company_name: "freeCodeCamp",
-        icon: free,
-        iconBg: "#383E56",
-        date: "Aug 2024 - Nov 2024",
-        points: [
-            "Delivered engaging, high-performance web interfaces optimized for user experience.",
-            "Coordinated with stakeholders to integrate client feedback into development cycles.",
-            "Leveraged modern frameworks to craft responsive and accessible designs.",
-            "Diagnosed and resolved technical issues, ensuring seamless project delivery.",
-        ],
-    },
-    {
-        title: "AI Developer | AI Engineer",
-        company_name: "IBM",
+        title: "Machine Learning Engineer (Internship)",
+        company_name: "HexSoftwares",
         icon: ibm,
         iconBg: "#E6DEDD",
-        date: "October 2023 - Dec 2024",
+        date: "2025 - 2025",
         points: [
-            "Designed and implemented AI-driven solutions to address complex business challenges.",
-            "Developed machine learning models and deployed them in scalable production environments.",
-            "Collaborated with cross-functional teams to integrate AI functionalities into applications and services.",
-            "Ensured the ethical use of AI by adhering to data privacy and security best practices.",
+            "Developed and optimized machine learning models, improving accuracy by 25% through data preprocessing and feature engineering.",
+            "Implemented scalable AI pipelines, reducing training time by 30% using parallel computing and cloud resources.",
+            "Collaborated with cross-functional teams to deploy ML solutions, enhancing system efficiency and user experience by 20%.",
+        ],
+    },
+    {
+        title: "Full-Stack Developer (Present)",
+        company_name: "Heybash FZCO",
+        icon: free,
+        iconBg: "#383E56",
+        date: "Present",
+        points: [
+            "Developing and maintaining web apps using HubSpot, WordPress, and APIs.",
+            "Building custom modules and responsive UI components.",
+            "Managing tasks via Teamwork and ensuring timely delivery.",
+            "Attending daily stand-up meetings and collaborating with the team.",
+            "Maintaining code quality standards, security, and best practices.",
         ],
     },
 ];
@@ -254,26 +249,139 @@ const projects = [
         source_code_link: "https://github.com/Nas103/rpgGame",
     },
     {
-        name: "Calorie Counter",
+        name: "IntelliG AI",
         description:
-            "Calorie Counter Web App is a user-friendly tool designed to help users track their daily calorie intake and achieve their fitness goals. This responsive web application allows users to input, monitor, and analyze their meals and calorie consumption in real-time.",
+            "IntelliG AI is an advanced artificial intelligence platform that leverages cutting-edge machine learning algorithms to provide intelligent solutions for various tasks. This powerful AI assistant can analyze data, generate content, answer questions, and assist users with complex problem-solving in real-time.",
         tags: [
             {
                 name: "JavaScript",
                 color: "blue-text-gradient",
             },
             {
-                name: "HTML",
+                name: "NextJS",
                 color: "green-text-gradient",
             },
             {
-                name: "CSS",
+                name: "Python",
                 color: "pink-text-gradient",
             },
+            {
+                name: "Tailwind",
+                color: "blue-text-gradient",
+            },
+            {
+                name: "OpenAI",
+                color: "green-text-gradient",
+            },
+            {
+                name: "TypeScript",
+                color: "orange-text-gradient",
+            },
+            {
+                name: "Redux Toolkit",
+                color: "grey-text-gradient",
+            },
+            {
+                name: "AWS/GCP",
+                color: "yellow-text-gradient",
+            },
+            {
+                name: "JWT Authentication",
+                color: "red-text-gradient",
+            },
+            {
+                name: "Redis",
+                color: "purple-text-gradient",
+            },
+            {
+                name: "PostgreSQL",
+                color: "green-text-gradient",
+            },
         ],
-        image: calorie_app,
+        image: intelligai,
         source_code_link: "https://github.com/Nas103/Calorie-counter",
     },
 ];
 
-export { services, technologies, experiences, testimonials, projects };
+const certifications = [
+  {
+    title: "Computer Science Career Path",
+    organization: "Codecademy",
+    date: "2023",
+    description: "Comprehensive program covering computer science fundamentals, algorithms, and software development principles."
+  },
+  {
+    title: "IBM AI Engineer Professional Certificate",
+    organization: "IBM",
+    date: "2024",
+    description: "Advanced certification in AI engineering, covering machine learning, deep learning, and AI application development."
+  },
+  {
+    title: "IBM AI Developer Professional Certificate",
+    organization: "IBM",
+    date: "2024",
+    description: "Specialized training in AI development, focusing on building and deploying AI-powered applications."
+  },
+  {
+    title: "Meta Backend Developer Professional Certificate",
+    organization: "Meta",
+    date: "2024",
+    description: "Comprehensive backend development training from Meta, covering server-side technologies and database management."
+  },
+  {
+    title: "Google IT Support Technician Specialist Professional Certificate",
+    organization: "Google",
+    date: "2023",
+    description: "Technical certification in IT support, covering troubleshooting, system administration, and customer service."
+  },
+  {
+    title: "Certified AWS Cloud Practitioner Essentials",
+    organization: "Amazon Web Services",
+    date: "2024",
+    description: "Foundational certification in AWS cloud services, architecture, and best practices."
+  },
+  {
+    title: "Certified AWS AI Practitioner",
+    organization: "Amazon Web Services",
+    date: "2024",
+    description: "Specialized certification in AWS AI and machine learning services and implementations."
+  },
+  {
+    title: "iOS and Android Mobile App Developer Professional Certificate",
+    organization: "Coursera",
+    date: "2024",
+    description: "Comprehensive training in mobile app development for both iOS and Android platforms."
+  },
+  {
+    title: "Data Science Professional Certificate",
+    organization: "IBM",
+    date: "2023",
+    description: "Advanced certification in data science methodologies, tools, and applications."
+  },
+  {
+    title: "Responsive Web Design Professional Certificate",
+    organization: "freeCodeCamp",
+    date: "2023",
+    description: "Certification in creating responsive and adaptive web designs for various devices and screen sizes."
+  },
+  {
+    title: "JavaScript Algorithms and Data Structures Professional Certificate",
+    organization: "freeCodeCamp",
+    date: "2023",
+    description: "Advanced training in JavaScript programming, focusing on algorithms and data structures."
+  },
+  {
+    title: "Python Developer Professional Certificate",
+    organization: "JetBrains",
+    date: "2024",
+    description: "Comprehensive certification in Python development, covering core concepts and advanced applications."
+  },
+  {
+    title: "Certified Python Data Scientist Associate",
+    organization: "DataCamp",
+    date: "2024",
+    description: "Specialized certification in data science using Python, focusing on data analysis and visualization."
+  }
+];
+
+export { services, technologies, experiences, testimonials, projects, certifications };

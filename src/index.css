@@ -69,6 +69,38 @@
   -webkit-text-fill-color: transparent;
 }
 
+.grey-text-gradient {
+  background: #808080;
+  background: -webkit-linear-gradient(to top, #808080, #a9a9a9);
+  background: linear-gradient(to top, #808080, #a9a9a9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.yellow-text-gradient {
+  background: #ffeb3b;
+  background: -webkit-linear-gradient(to top, #ffeb3b, #ffc107);
+  background: linear-gradient(to top, #ffeb3b, #ffc107);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.red-text-gradient {
+  background: #ff0000;
+  background: -webkit-linear-gradient(to top, #ff0000, #ff5252);
+  background: linear-gradient(to top, #ff0000, #ff5252);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.purple-text-gradient {
+  background: #9c27b0;
+  background: -webkit-linear-gradient(to top, #9c27b0, #ba68c8);
+  background: linear-gradient(to top, #9c27b0, #ba68c8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 /* canvas- styles */
 .canvas-loader {
   font-size: 10px;
@@ -177,7 +209,7 @@
 }
 
 .heading-section p {
-  background: linear-gradient(to right, #ff803a, #092cba, #ff803a, #0725ae, #050816);
+  background: linear-gradient(to right, #ff803a, purple, darkslateblue, darkslateblue, yellow, greenyellow, lawngreen, green, #092cba, #ff803a, #0725ae, #050816);
   background-clip: text;
   color: transparent;
   font-size: 2.3rem;
@@ -195,6 +227,19 @@
 
 .orange-gradient-text {
   background: linear-gradient(to right, #FFA500, #e4e126);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Cursor.com gradient styling */
+.cursor-gradient {
+  background: linear-gradient(to right, #7928CA, #FF0080);
+  background: -webkit-linear-gradient(to right, #7928CA, #FF0080);
+}
+
+.cursor-text-gradient {
+  background: linear-gradient(to right, #7928CA, #FF0080);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

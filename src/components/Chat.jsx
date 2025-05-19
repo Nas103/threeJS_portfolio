@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import emailjs from '@emailjs/browser';
 import { styles } from "../styles.js";
 import { motion } from "framer-motion";
+import { certifications } from "../constants/index.js";
 
 const Chat = ({ isOpen, onClose }) => {
   const [messages, setMessages] = useState([
@@ -9,8 +10,10 @@ const Chat = ({ isOpen, onClose }) => {
   ]);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  const [isListening, setIsListening] = useState(false);
   const messagesEndRef = useRef(null);
-  
+  const recognitionRef = useRef(null);
+
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -18,6 +21,52 @@ const Chat = ({ isOpen, onClose }) => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Initialize speech recognition
+  useEffect(() => {
+    if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      recognitionRef.current = new SpeechRecognition();
+      recognitionRef.current.continuous = false;
+      recognitionRef.current.interimResults = false;
+      recognitionRef.current.lang = 'en-US';
+
+      recognitionRef.current.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        setInput(transcript);
+        setIsListening(false);
+      };
+
+      recognitionRef.current.onerror = (event) => {
+        console.error('Speech recognition error', event.error);
+        setIsListening(false);
+      };
+
+      recognitionRef.current.onend = () => {
+        setIsListening(false);
+      };
+    }
+
+    return () => {
+      if (recognitionRef.current) {
+        recognitionRef.current.abort();
+      }
+    };
+  }, []);
+
+  const toggleListening = () => {
+    if (isListening) {
+      recognitionRef.current?.abort();
+      setIsListening(false);
+    } else {
+      try {
+        recognitionRef.current?.start();
+        setIsListening(true);
+      } catch (error) {
+        console.error('Failed to start speech recognition:', error);
+      }
+    }
+  };
 
   // Function to navigate to different sections
   const navigateToSection = (sectionId) => {
@@ -31,28 +80,28 @@ const Chat = ({ isOpen, onClose }) => {
 
   const handleSend = async (e) => {
     e.preventDefault();
-    
+
     if (!input.trim()) return;
-    
+
     // Add user message to chat
     const userMessage = { text: input, sender: "user" };
     setMessages(prev => [...prev, userMessage]);
     setInput("");
     setIsTyping(true);
-    
+
     try {
       // Predefined responses based on keywords
       const userQuery = input.toLowerCase();
-      
+
       setTimeout(() => {
         let aiResponse = { text: "", sender: "ai" };
         let shouldNavigate = false;
         let sectionToNavigate = "";
-        
+
         // Check for navigation requests
         if (userQuery.includes("take me to") || userQuery.includes("go to") || userQuery.includes("navigate to") || userQuery.includes("show me")) {
           shouldNavigate = true;
-          
+
           if (userQuery.includes("about")) {
             sectionToNavigate = "about";
             aiResponse.text = "Taking you to the About section now!";
@@ -68,6 +117,9 @@ const Chat = ({ isOpen, onClose }) => {
           } else if (userQuery.includes("tech") || userQuery.includes("technology") || userQuery.includes("skill")) {
             sectionToNavigate = "tech";
             aiResponse.text = "Here are the technologies Rhulani works with!";
+          } else if (userQuery.includes("certifications") || userQuery.includes("certification") || userQuery.includes("certificate")) {
+            sectionToNavigate = "certifications";
+            aiResponse.text = "Taking you to the Certifications section!";
           } else if (userQuery.includes("top") || userQuery.includes("home")) {
             sectionToNavigate = "home";
             aiResponse.text = "Taking you back to the top!";
@@ -75,7 +127,7 @@ const Chat = ({ isOpen, onClose }) => {
             shouldNavigate = false; // Already navigated
           } else {
             shouldNavigate = false;
-            aiResponse.text = "I'm not sure which section you want to navigate to. You can ask me to take you to About, Work, Projects, Tech, or Contact sections.";
+            aiResponse.text = "I'm not sure which section you want to navigate to. You can ask me to take you to About, Work, Projects, Tech, Certifications, or Contact sections.";
           }
         } else if (userQuery.includes("experience") || userQuery.includes("work")) {
           aiResponse.text = "Rhulani has experience as a Software Engineer, AI Developer, and Full-Stack Developer. Check out the 'Work' section for more details! Would you like me to take you there?";
@@ -85,15 +137,18 @@ const Chat = ({ isOpen, onClose }) => {
           aiResponse.text = "You can contact Rhulani through the Contact form at the bottom of the page. Feel free to reach out for collaboration or job opportunities! Would you like me to take you to the contact section?";
         } else if (userQuery.includes("skill") || userQuery.includes("tech")) {
           aiResponse.text = "Rhulani is skilled in various technologies including JavaScript, React, Node.js, Python, and AI development. Would you like me to show you the technologies section?";
+        } else if (userQuery.includes("certification") || userQuery.includes("certifications") || userQuery.includes("certificate")) {
+          const certList = certifications.slice(0, 3).map(cert => cert.title).join(", ") + ", and more";
+          aiResponse.text = `Rhulani has earned several professional certifications including ${certList}. Would you like me to take you to the Certifications section to see all of them?`;
         } else if (userQuery.includes("hello") || userQuery.includes("hi") || userQuery.includes("hey")) {
-          aiResponse.text = "Hello there! Welcome to Rhulani's portfolio. How can I assist you today? I can tell you about Rhulani's skills, projects, or navigate you to different sections of the portfolio.";
+          aiResponse.text = "Hello there! Welcome to Rhulani's portfolio. How can I assist you today? I can tell you about Rhulani's skills, projects, certifications, or navigate you to different sections of the portfolio.";
         } else {
-          aiResponse.text = "Thanks for your message! Rhulani has expertise in software engineering, AI development, and full-stack development. Is there something specific you'd like to know about the portfolio, projects, or skills? I can also navigate you to any section you'd like to see.";
+          aiResponse.text = "Thanks for your message! Rhulani has expertise in software engineering, AI development, and full-stack development. Is there something specific you'd like to know about the portfolio, projects, certifications, or skills? I can also navigate you to any section you'd like to see.";
         }
-        
+
         setMessages(prev => [...prev, aiResponse]);
         setIsTyping(false);
-        
+
         // Navigate after a short delay to ensure the message is seen
         if (shouldNavigate && sectionToNavigate) {
           setTimeout(() => {
@@ -101,7 +156,7 @@ const Chat = ({ isOpen, onClose }) => {
           }, 1000);
         }
       }, 1000);
-      
+
     } catch (error) {
       console.error("Error:", error);
       setMessages(prev => [...prev, { text: "Sorry, I encountered an error. Please try again later.", sender: "ai" }]);
@@ -128,7 +183,7 @@ const Chat = ({ isOpen, onClose }) => {
           ×
         </button>
       </div>
-      
+
       <div className="flex-1 p-4 overflow-y-auto bg-black bg-opacity-70">
         {messages.map((msg, index) => (
           <div 
@@ -155,23 +210,40 @@ const Chat = ({ isOpen, onClose }) => {
         )}
         <div ref={messagesEndRef} />
       </div>
-      
+
       <form onSubmit={handleSend} className="p-4 bg-black bg-opacity-80 border-t border-gray-700">
         <div className="flex flex-col w-full space-y-2">
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask me anything..."
-            className="w-full h-10 px-4 py-2 bg-gray-800 text-white rounded-lg focus:outline-none"
-          />
-          <div className="flex justify-end">
+          <div className="flex w-full">
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Ask me anything..."
+              className="flex-grow h-10 px-4 py-2 bg-gray-800 text-white rounded-l-lg focus:outline-none"
+            />
             <button 
-              type="submit" 
-              className="h-10 min-w-[80px] bg-violet-600 hover:bg-violet-700 text-white px-4 rounded-lg focus:outline-none whitespace-nowrap"
+              type="button"
+              onClick={toggleListening}
+              className={`h-10 w-10 flex items-center justify-center ${isListening ? 'cursor-gradient' : 'bg-gray-700'} text-white rounded-r-lg focus:outline-none`}
+              title={isListening ? "Stop listening" : "Start voice input"}
             >
-              Send
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clipRule="evenodd" />
+              </svg>
             </button>
+          </div>
+          <div className="flex justify-between items-center">
+            {isListening && (
+              <span className="text-sm text-violet-400 animate-pulse">Listening...</span>
+            )}
+            <div className="flex justify-end flex-grow">
+              <button 
+                type="submit" 
+                className="h-10 min-w-[80px] cursor-gradient text-white px-4 rounded-lg focus:outline-none whitespace-nowrap"
+              >
+                Send
+              </button>
+            </div>
           </div>
         </div>
       </form>
