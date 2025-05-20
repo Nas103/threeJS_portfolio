@@ -64,7 +64,7 @@ const Navbar = () => {
             <img src={logo} alt='logo' className='w-9 h-9 object-contain rounded-full' />
             <p className='text-white text-[18px] font-bold cursor-pointer flex '>
               Rhulani &nbsp;
-              <span className='sm:block hidden'>| Nas_Code</span>
+              <span className='sm:block hidden'>Mashala</span>
             </p>
           </Link>
 
