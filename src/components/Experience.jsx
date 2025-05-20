@@ -24,11 +24,11 @@ const ExperienceCard = ({ experience }) => {
       iconStyle={{ background: experience.iconBg }}
       icon={
         <div className='flex justify-center items-center w-full h-full'>
-          <img
-            src={experience.icon}
-            alt={experience.company_name}
-            className='w-[60%] h-[60%] object-contain'
-          />
+          <div 
+            className='flex justify-center items-center rounded-full w-full h-full text-white font-bold text-xl'
+          >
+            {experience.company_name.charAt(0).toUpperCase()}
+          </div>
         </div>
       }
     >
