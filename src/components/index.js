@@ -26,28 +26,7 @@ export {
   StarsCanvas,
   ErrorBoundary
 };
-import ErrorBoundary from './ErrorBoundary';
 
-export { EarthCanvas, BallCanvas, ComputersCanvas, StarsCanvas };
-export { Hero, Navbar, About, Tech, Experience, Works, Feedbacks, Contact, Chat, ErrorBoundary };
-import ErrorBoundary from './ErrorBoundary';
-
-export {
-  Hero,
-  Navbar,
-  About,
-  Tech,
-  Experience,
-  Works,
-  Feedbacks,
-  Contact,
-  EarthCanvas, 
-  BallCanvas, 
-  ComputersCanvas, 
-  StarsCanvas,
-  Chat,
-  ErrorBoundary
-};
 import Certifications from './Certifications';
 
 export {
