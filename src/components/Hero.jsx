@@ -37,9 +37,16 @@ const Hero = () => {
       </div>
 
       <div className="w-full h-screen absolute top-0 left-0">
-        <Suspense fallback={<CanvasFallback />}>
-          <ComputersCanvas />
-        </Suspense>
+        <ErrorBoundary fallback={<div className="w-full h-screen flex items-center justify-center">
+            <div className="text-white text-center">
+              <h2 className="text-2xl font-bold mb-4">Something went wrong</h2>
+              <p>We couldn't load the 3D view.</p>
+            </div>
+          </div>}>
+          <Suspense fallback={<CanvasFallback />}>
+            <ComputersCanvas />
+          </Suspense>
+        </ErrorBoundary>
       </div>
 
       <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center z-10'>

@@ -2,6 +2,16 @@ import { BrowserRouter } from "react-router-dom";
 import { useState, Suspense, lazy } from "react";
 import { ErrorBoundary, Navbar } from "./components";
 
+// Fallback for lazy-loaded components
+const LoadingFallback = () => (
+  <div className="flex items-center justify-center min-h-screen bg-primary">
+    <div className="text-white text-center">
+      <div className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-purple-500 border-r-transparent mb-4"></div>
+      <p className="text-xl">Loading...</p>
+    </div>
+  </div>
+);
+
 // Lazy load components to improve initial loading
 const About = lazy(() => import("./components/About"));
 const Contact = lazy(() => import("./components/Contact"));
