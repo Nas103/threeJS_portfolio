@@ -8,6 +8,24 @@ import Works from './Works';
 import Feedbacks from './Feedbacks';
 import Contact from './Contact';
 import Chat from './Chat';
+import ErrorBoundary from './ErrorBoundary';
+
+export {
+  Hero,
+  Navbar,
+  About,
+  Tech,
+  Experience,
+  Works,
+  Feedbacks,
+  Contact,
+  EarthCanvas, 
+  BallCanvas, 
+  ComputersCanvas, 
+  StarsCanvas,
+  Chat,
+  ErrorBoundary
+};
 import Certifications from './Certifications';
 
 export {
@@ -26,3 +44,8 @@ export {
   Chat,
   Certifications
 };
+// src/components/index.js
+export { default as Navbar } from './Navbar';
+// Add this line:
+export { default as ErrorBoundary } from './ErrorBoundary';
+// ... other exports
