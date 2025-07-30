@@ -24,12 +24,10 @@ export {
   BallCanvas, 
   ComputersCanvas, 
   StarsCanvas,
-  ErrorBoundary,
-  Certifications
+  Certifications,
+  ErrorBoundary
 };
 
 // src/components/index.js
-export { default as Navbar } from './Navbar';
 // Add this line:
-export { default as ErrorBoundary } from './ErrorBoundary';
 // ... other exports
