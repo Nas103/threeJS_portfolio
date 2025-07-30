@@ -173,7 +173,7 @@ const experiences = [
             "Building custom modules and responsive UI components.",
             "Managing tasks via Teamwork and ensuring timely delivery.",
             "Attending daily stand-up meetings and collaborating with the team.",
-            "Maintaining code quality standards, security, and best practices.",
+            "Maintaining code quality standards, security, and best practices.",  
         ],
     },
 ];
