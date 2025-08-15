@@ -18,7 +18,7 @@ const Hero = () => {
           <h1 className={`${styles.heroHeadText} text-white`}>
             Hi, I'm <span className='orange-gradient-text'>Rhulani</span>
           </h1>
-          <p className={`${styles.heroSubText} mt-2 bg-gradient-to-l text-[4rem]`}>
+          <p className={`${styles.heroSubText} mt-2 mb-4 bg-gradient-to-l text-[4rem]`}>
             I'm an AI Engineer | Developer, <br className='sm:block hidden' />
             i create intelligent solutions for real-world challenges.
           </p>
@@ -27,7 +27,7 @@ const Hero = () => {
 
       <ComputersCanvas />
 
-      <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center'>
+      <div className='absolute mt-5 xs:bottom-10 bottom-32 w-full flex justify-center items-center'>
         <a href='#about'>
           <div className='w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2'>
             <motion.div
