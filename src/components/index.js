@@ -8,7 +8,6 @@ import Works from './Works';
 import Feedbacks from './Feedbacks';
 import Contact from './Contact';
 import Chat from './Chat';
-import ErrorBoundary from './ErrorBoundary';
 import Certifications from './Certifications';
 
 export {
@@ -25,6 +24,5 @@ export {
   BallCanvas, 
   ComputersCanvas, 
   StarsCanvas,
-  ErrorBoundary,
   Certifications
 };
