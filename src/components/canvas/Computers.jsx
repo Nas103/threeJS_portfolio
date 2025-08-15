@@ -4,8 +4,30 @@ import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 
 import CanvasLoader from "../Loader.jsx";
 
-const Computers = ({ isMobile }) => {
+const ComputerModel = ({ isMobile }) => {
+  // Use error handling for GLTF loading
+  const [error, setError] = useState(false);
+  
+  // useGLTF must be called at the top level, not inside try-catch
   const computer = useGLTF("./desktop_pc/scene.gltf");
+  
+  // Handle errors in useEffect instead
+  useEffect(() => {
+    if (computer && computer.error) {
+      console.error("Error loading 3D model:", computer.error);
+      setError(true);
+    }
+  }, [computer]);
+  
+  if (error) {
+    return (
+      <mesh>
+        <ambientLight intensity={0.5} />
+        <boxGeometry args={[1, 1, 1]} />
+        <meshStandardMaterial color="red" />
+      </mesh>
+    );
+  }
 
   return (
     <mesh>
@@ -71,7 +93,7 @@ const ComputersCanvas = () => {
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
         />
-        <Computers isMobile={isMobile} />
+        <ComputerModel isMobile={isMobile} />
       </Suspense>
 
       <Preload all />

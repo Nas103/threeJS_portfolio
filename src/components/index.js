@@ -10,6 +10,7 @@ import Contact from './Contact';
 import Chat from './Chat';
 import ErrorBoundary from './ErrorBoundary';
 import Certifications from './Certifications';
+
 export {
   Hero,
   Navbar,
@@ -27,9 +28,3 @@ export {
   ErrorBoundary,
   Certifications
 };
-
-// src/components/index.js
-export { default as Navbar } from './Navbar';
-// Add this line:
-export { default as ErrorBoundary } from './ErrorBoundary';
-// ... other exports
