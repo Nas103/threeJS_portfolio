@@ -15,15 +15,15 @@ const Chat = ({ isOpen, onClose }) => {
   const recognitionRef = useRef(null);
   const speechRef = useRef(null);
 
-  // Random positive expressions to start responses
+  // Random positive expressions for relevant questions
   const positiveExpressions = [
     "Rhulani is absolutely incredible! ",
-    "Rhulani is truly exceptional! ",
+    "You got an idea, he'll turn it into a solution, he's truly exceptional! ",
     "Rhulani is absolutely brilliant! ",
     "Rhulani is incredibly talented! ",
-    "Rhulani is absolutely outstanding! ",
-    "Rhulani is remarkably skilled! ",
-    "Rhulani is absolutely phenomenal! ",
+    "He is absolutely outstanding! ",
+    "For someone who is remarkably skilled! ",
+    "He absolutely phenomenal! ",
     "Rhulani is incredibly impressive! ",
     "Rhulani is absolutely marvelous! ",
     "Rhulani is exceptionally gifted! ",
@@ -34,12 +34,29 @@ const Chat = ({ isOpen, onClose }) => {
     "Rhulani is absolutely extraordinary! "
   ];
 
+  // Random expressions for irrelevant questions
+  const irrelevantExpressions = [
+    "I'm not sure that's related to Rhulani's portfolio, but ",
+    "That's an interesting question, though not portfolio-related. ",
+    "I'm here to help with portfolio questions, but ",
+    "That's outside my scope, but ",
+    "I'm focused on Rhulani's work, but ",
+    "That's not really about the portfolio, but ",
+    "I'm here for portfolio questions, though ",
+    "That's beyond my expertise, but ",
+    "I'm designed for portfolio help, but ",
+    "That's not portfolio-related, but "
+  ];
+
   // Function to get random positive expression
   const getRandomExpression = () => {
     return positiveExpressions[Math.floor(Math.random() * positiveExpressions.length)];
   };
 
-
+  // Function to get random irrelevant expression
+  const getRandomIrrelevantExpression = () => {
+    return irrelevantExpressions[Math.floor(Math.random() * irrelevantExpressions.length)];
+  };
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -129,50 +146,103 @@ const Chat = ({ isOpen, onClose }) => {
     return false;
   };
 
-  const generateGPT5Response = (userQuery) => {
+  const generateAIResponse = (userQuery) => {
     const query = userQuery.toLowerCase();
     
-    // Use random positive expressions
-    let positiveIntro = getRandomExpression();
+    // Check for greetings first
+    if (query.includes("hello") || query.includes("hi") || query.includes("hey") || query.includes("good morning") || query.includes("good afternoon") || query.includes("good evening")) {
+      const greetings = [
+        "Hello there! 👋 How can I help you learn about Rhulani's portfolio today?",
+        "Hi! 😊 Welcome to Rhulani's portfolio. What would you like to know?",
+        "Hey! 👋 Great to see you here. How can I assist you with Rhulani's work?",
+        "Hello! 😄 I'm here to help you explore Rhulani's skills and projects. What interests you?",
+        "Hi there! 👋 Ready to discover what makes Rhulani an exceptional developer?"
+      ];
+      return greetings[Math.floor(Math.random() * greetings.length)];
+    }
     
+    // Check for navigation requests
+    if (query.includes("take me to") || query.includes("go to") || query.includes("navigate to") || query.includes("show me") || query.includes("open")) {
+      let sectionToNavigate = "";
+      let response = "";
+      
+      if (query.includes("about")) {
+        sectionToNavigate = "about";
+        response = "Taking you to the About section now!";
+      } else if (query.includes("work") || query.includes("experience")) {
+        sectionToNavigate = "work";
+        response = "Navigating to the Work Experience section!";
+      } else if (query.includes("project") || query.includes("works")) {
+        sectionToNavigate = "projects";
+        response = "Here are Rhulani's projects!";
+      } else if (query.includes("contact")) {
+        sectionToNavigate = "contact";
+        response = "Taking you to the Contact section!";
+      } else if (query.includes("tech") || query.includes("technology") || query.includes("skill")) {
+        sectionToNavigate = "tech";
+        response = "Here are the technologies Rhulani works with!";
+      } else if (query.includes("certifications")) {
+        sectionToNavigate = "certifications";
+        response = "Taking you to the Certifications section!";
+      } else if (query.includes("top") || query.includes("home")) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return "Taking you back to the top!";
+      } else {
+        return "I can take you to About, Work, Projects, Tech, Certifications, or Contact sections. Which one would you like to see?";
+      }
+      
+      // Navigate immediately for navigation requests
+      if (sectionToNavigate) {
+        setTimeout(() => navigateToSection(sectionToNavigate), 500);
+      }
+      
+      return response;
+    }
+    
+    // Check for relevant portfolio questions
     if (query.includes("who") && query.includes("rhulani")) {
-      return positiveIntro + "Rhulani Mashala is an exceptional AI Engineer and Full-Stack Developer from South Africa. He's incredibly passionate about creating intelligent solutions for real-world challenges and has a remarkable ability to blend cutting-edge AI technology with practical software development.";
+      return "Rhulani Mashala is an exceptional AI Engineer and Full-Stack Developer from South Africa. He's incredibly passionate about creating intelligent solutions for real-world challenges and has a remarkable ability to blend cutting-edge AI technology with practical software development.";
     }
     
     if (query.includes("skill") || query.includes("tech") || query.includes("technology")) {
-      return positiveIntro + "Rhulani's technical skills are absolutely outstanding! He's a master of multiple programming languages including JavaScript, Python, C++, and Java. His expertise in AI/ML frameworks like TensorFlow and PyTorch is exceptional, and he's incredibly proficient with modern web technologies like React, Node.js, and Three.js. He's also skilled with databases like PostgreSQL and cloud platforms like AWS.";
+      return getRandomExpression() + "Rhulani's technical skills are absolutely outstanding! He's a master of multiple programming languages including JavaScript, Python, C++, and Java. His expertise in AI/ML frameworks like TensorFlow and PyTorch is exceptional, and he's incredibly proficient with modern web technologies like React, Node.js, and Three.js. He's also skilled with databases like PostgreSQL and cloud platforms like AWS.";
     }
     
     if (query.includes("experience") || query.includes("work")) {
-      return positiveIntro + "Rhulani's professional experience is truly impressive! He's currently working as a Software Engineer at TechCorp, where he's been leading the development of AI-powered applications. Previously, he was an AI Developer at InnovateAI, where he significantly improved system performance by 40%. His ability to mentor junior developers and implement CI/CD pipelines shows his leadership and technical excellence.";
+      return getRandomExpression() + "Rhulani's professional experience is truly impressive! He's currently working as a Software Engineer at TechCorp, where he's been leading the development of AI-powered applications. Previously, he was an AI Developer at InnovateAI, where he significantly improved system performance by 40%. His ability to mentor junior developers and implement CI/CD pipelines shows his leadership and technical excellence.";
     }
     
     if (query.includes("project") || query.includes("portfolio")) {
-      return positiveIntro + "Rhulani's projects are absolutely brilliant! He's built the Xora AI chatbot using OpenAI's GPT technology, created an impressive RPG game with real-time multiplayer features, developed a comprehensive Calorie Counter health app, and of course, this stunning 3D portfolio website using React and Three.js. Each project showcases his creativity and technical prowess.";
+      return getRandomExpression() + "Rhulani's projects are absolutely brilliant! He's built the Xora AI chatbot using OpenAI's GPT technology, created an impressive RPG game with real-time multiplayer features, developed a comprehensive Calorie Counter health app, and of course, this stunning 3D portfolio website using React and Three.js. Each project showcases his creativity and technical prowess.";
     }
     
     if (query.includes("education") || query.includes("degree")) {
-      return positiveIntro + "Rhulani holds a Bachelor's degree in Computer Science from the University of Technology, with a specialized focus on Artificial Intelligence and Software Engineering. His academic background perfectly complements his practical skills and real-world experience.";
+      return "Rhulani holds a Bachelor's degree in Computer Science from the University of Technology, with a specialized focus on Artificial Intelligence and Software Engineering. His academic background perfectly complements his practical skills and real-world experience.";
     }
     
     if (query.includes("certification") || query.includes("certificate")) {
-      return positiveIntro + "Rhulani's certifications are a testament to his dedication to excellence! He's earned prestigious certifications including AWS Certified Developer, Google Cloud Professional, Microsoft Azure Developer, and TensorFlow Developer Certificate. These certifications demonstrate his commitment to staying current with the latest technologies.";
+      return "Rhulani has earned prestigious certifications including AWS Certified Developer, Google Cloud Professional, Microsoft Azure Developer, and TensorFlow Developer Certificate. These certifications demonstrate his commitment to staying current with the latest technologies.";
     }
     
     if (query.includes("ai") || query.includes("artificial intelligence")) {
-      return positiveIntro + "Rhulani's expertise in AI is absolutely remarkable! He's deeply knowledgeable about machine learning, deep learning, and natural language processing. He's worked extensively with TensorFlow, PyTorch, and OpenAI APIs, and has a unique ability to translate complex AI concepts into practical, user-friendly applications.";
+      return getRandomExpression() + "Rhulani's expertise in AI is absolutely remarkable! He's deeply knowledgeable about machine learning, deep learning, and natural language processing. He's worked extensively with TensorFlow, PyTorch, and OpenAI APIs, and has a unique ability to translate complex AI concepts into practical, user-friendly applications.";
     }
     
     if (query.includes("future") || query.includes("goal") || query.includes("aspiration")) {
-      return positiveIntro + "Rhulani is incredibly ambitious and forward-thinking! He's passionate about advancing AI technology and creating solutions that make a real difference in people's lives. His goal is to become a leading expert in AI engineering and to contribute to groundbreaking technological innovations.";
+      return getRandomExpression() + "Rhulani is incredibly ambitious and forward-thinking! He's passionate about advancing AI technology and creating solutions that make a real difference in people's lives. His goal is to become a leading expert in AI engineering and to contribute to groundbreaking technological innovations.";
     }
     
-    if (query.includes("hello") || query.includes("hi") || query.includes("hey")) {
-      return positiveIntro + "It's wonderful to meet you! I'm Rhulani's AI assistant, and I'm here to tell you all about this amazing developer. Rhulani is not just technically skilled - he's also incredibly creative, innovative, and passionate about technology. What would you like to know about him?";
+    if (query.includes("hire") || query.includes("contact") || query.includes("collaborate")) {
+      return "You can contact Rhulani through the Contact form at the bottom of the page. Feel free to reach out for collaboration or job opportunities! Would you like me to take you to the contact section?";
     }
     
-    // Default response with positive reinforcement
-    return positiveIntro + "Rhulani is an exceptional developer with a unique combination of technical skills, creativity, and passion for AI. He's worked on amazing projects, earned prestigious certifications, and has a bright future ahead. Is there something specific about his skills, projects, or experience you'd like to know more about?";
+    // Check for irrelevant questions
+    if (query.includes("weather") || query.includes("time") || query.includes("date") || query.includes("joke") || query.includes("story") || query.includes("recipe") || query.includes("sport") || query.includes("movie") || query.includes("music")) {
+      return getRandomIrrelevantExpression() + "I'm specifically designed to help with questions about Rhulani's portfolio, skills, and projects. Is there something about his work you'd like to know?";
+    }
+    
+    // Default response for unclear questions
+    return "I'm here to help you learn about Rhulani's portfolio! You can ask me about his skills, projects, experience, certifications, or I can navigate you to different sections. What would you like to know?";
   };
 
   const handleSend = async (e) => {
@@ -187,41 +257,24 @@ const Chat = ({ isOpen, onClose }) => {
     setIsTyping(true);
 
     try {
-      // Generate GPT-5 style response
-      const aiResponse = generateGPT5Response(input);
+      // Generate AI response
+      const aiResponse = generateAIResponse(input);
       
       setTimeout(() => {
         const responseMessage = { text: aiResponse, sender: "ai" };
         setMessages(prev => [...prev, responseMessage]);
         setIsTyping(false);
         
-        // Speak the response with realistic male voice
-        speakText(aiResponse);
-        
-        // Check for navigation requests
+        // Only speak for non-navigation responses
         const query = input.toLowerCase();
-        if (query.includes("take me to") || query.includes("go to") || query.includes("navigate to") || query.includes("show me")) {
-          let sectionToNavigate = "";
-          if (query.includes("about")) sectionToNavigate = "about";
-          else if (query.includes("work") || query.includes("experience")) sectionToNavigate = "work";
-          else if (query.includes("project") || query.includes("works")) sectionToNavigate = "projects";
-          else if (query.includes("contact")) sectionToNavigate = "contact";
-          else if (query.includes("tech") || query.includes("technology") || query.includes("skill")) sectionToNavigate = "tech";
-          else if (query.includes("certifications")) sectionToNavigate = "certifications";
-          else if (query.includes("top") || query.includes("home")) {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-            return;
-          }
-          
-          if (sectionToNavigate) {
-            setTimeout(() => navigateToSection(sectionToNavigate), 2000);
-          }
+        if (!query.includes("take me to") && !query.includes("go to") && !query.includes("navigate to") && !query.includes("show me") && !query.includes("open")) {
+          speakText(aiResponse);
         }
       }, 1000);
 
     } catch (error) {
       console.error("Error:", error);
-      setMessages(prev => [...prev, { text: "I&apos;m sorry, I encountered an error. But let me tell you - Rhulani is absolutely amazing and would love to help you with any questions! Please try again.", sender: "ai" }]);
+      setMessages(prev => [...prev, { text: "I'm sorry, I encountered an error. Please try again later.", sender: "ai" }]);
       setIsTyping(false);
     }
   };
@@ -238,7 +291,20 @@ const Chat = ({ isOpen, onClose }) => {
     >
       <div className="bg-primary p-4 flex justify-between items-center border-b border-gray-700">
         <div className="flex items-center space-x-2">
-          <img src={aiIcon} alt="AI Assistant" className="w-15 h-10" />
+          <motion.img 
+            src={aiIcon} 
+            alt="AI Assistant" 
+            className="w-15 h-9"
+            animate={{ 
+              rotate: [0, 5, -5, 0],
+              scale: [1, 1.1, 1]
+            }}
+            transition={{ 
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
           <h3 className="text-white font-bold">Rhulani's AI Assistant</h3>
         </div>
         <button 
@@ -269,7 +335,7 @@ const Chat = ({ isOpen, onClose }) => {
         {isTyping && (
           <div className="text-left mb-3">
             <div className="inline-block bg-gray-800 text-white rounded-lg px-4 py-2">
-              <span className="typing-animation">🤖 AI is thinking...</span>
+              <span className="typing-animation">AI is thinking...</span>
             </div>
           </div>
         )}
@@ -293,15 +359,15 @@ const Chat = ({ isOpen, onClose }) => {
               className={`h-10 w-10 flex items-center justify-center ${isListening ? 'bg-red-600' : 'bg-gray-700'} text-white rounded-r-lg focus:outline-none ml-2`}
               title={isListening ? "Stop listening" : "Start voice input"}
             >
-              <img src={micIcon} alt="Microphone" className="w-19 h-7" />
+              <img src={micIcon} alt="Microphone" className="w-7 h-7" />
             </button>
           </div>
           <div className="flex justify-between items-center">
             {isListening && (
-              <span className="text-sm text-red-400 animate-pulse">🎤 Listening...</span>
+              <span className="text-sm text-red-400 animate-pulse">Listening...</span>
             )}
             {isSpeaking && (
-              <span className="text-sm text-blue-400 animate-pulse">🔊 Speaking...</span>
+              <span className="text-sm text-blue-400 animate-pulse">Speaking...</span>
             )}
             <div className="flex justify-end flex-grow">
               <button 

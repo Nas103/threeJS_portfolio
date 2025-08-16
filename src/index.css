@@ -209,7 +209,7 @@
 }
 
 .heading-section p {
-  background: linear-gradient(to right, #ff803a, purple, darkslateblue, darkslateblue, yellow, #092cba, #ff803a, #a807ae, #050816);
+  background: linear-gradient(to right, #ff803a, purple, darkslateblue, darkslateblue, #092cba, #ff803a, #a807ae, #050816);
   background-clip: text;
   color: transparent;
   font-size: 2.3rem;
