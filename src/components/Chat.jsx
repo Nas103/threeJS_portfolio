@@ -152,11 +152,11 @@ const Chat = ({ isOpen, onClose }) => {
     // Check for greetings first
     if (query.includes("hello") || query.includes("hi") || query.includes("hey") || query.includes("good morning") || query.includes("good afternoon") || query.includes("good evening")) {
       const greetings = [
-        "Hello there! 👋 How can I help you learn about Rhulani's portfolio today?",
-        "Hi! 😊 Welcome to Rhulani's portfolio. What would you like to know?",
-        "Hey! 👋 Great to see you here. How can I assist you with Rhulani's work?",
-        "Hello! 😄 I'm here to help you explore Rhulani's skills and projects. What interests you?",
-        "Hi there! 👋 Ready to discover what makes Rhulani an exceptional developer?"
+        "Hello there! How can I help you learn about Rhulani's portfolio today?",
+        "Hi! Welcome to Rhulani's portfolio. What would you like to know?",
+        "Hey! Great to see you here. How can I assist you with Rhulani's work?",
+        "Hello! I'm here to help you explore Rhulani's skills and projects. What interests you?",
+        "Hi there! Ready to discover what makes Rhulani an exceptional developer?"
       ];
       return greetings[Math.floor(Math.random() * greetings.length)];
     }

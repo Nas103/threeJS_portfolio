@@ -350,57 +350,84 @@ def train_model(model, train_loader, epochs=100):
   }, []);
 
   return (
-    <div className="relative w-full">
-      {/* Animated Code Background */}
-      <div className="absolute inset-0 bg-black bg-opacity-90 rounded-2xl overflow-hidden">
-        <div className="p-6 h-full">
-          {/* Code Header */}
-          <div className="flex items-center space-x-2 mb-4">
-            <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-            <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-            <span className="text-gray-400 ml-2 text-sm">{currentLanguage}</span>
+    <div className="relative w-full min-h-screen py-16">
+      {/* Header Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="text-center mb-16"
+      >
+        <h2 className="text-5xl font-bold text-white mb-6">
+          Tech Stack
+        </h2>
+        <p className="text-gray-300 text-xl max-w-3xl mx-auto">
+          I work with cutting-edge technologies to create innovative solutions
+        </p>
+      </motion.div>
+
+      {/* Code Examples Section - Top Half */}
+      <div className="mb-20">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="bg-black bg-opacity-90 rounded-2xl overflow-hidden mx-auto max-w-6xl"
+        >
+          <div className="p-8">
+            {/* Code Header */}
+            <div className="flex items-center space-x-2 mb-6">
+              <div className="w-4 h-4 bg-red-500 rounded-full"></div>
+              <div className="w-4 h-4 bg-yellow-500 rounded-full"></div>
+              <div className="w-4 h-4 bg-green-500 rounded-full"></div>
+              <span className="text-gray-300 ml-3 text-lg font-medium">{currentLanguage}</span>
+            </div>
+            
+            {/* Code Content */}
+            <pre className="text-green-400 text-base font-mono overflow-hidden leading-relaxed">
+              <code>{currentCode}</code>
+              <span className="animate-pulse">|</span>
+            </pre>
           </div>
-          
-          {/* Code Content */}
-          <pre className="text-green-400 text-sm font-mono overflow-hidden">
-            <code>{currentCode}</code>
-            <span className="animate-pulse">|</span>
-          </pre>
-        </div>
+        </motion.div>
       </div>
 
-      {/* Tech Stack Content */}
-      <div className="relative z-10 pt-8">
+      {/* Tech Stack 3D Models Section - Bottom Half */}
+      <div className="mt-20">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-8"
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="text-center mb-12"
         >
-          <h2 className="text-4xl font-bold text-white mb-4">
-            Tech Stack
-          </h2>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-            I work with cutting-edge technologies to create innovative solutions
+          <h3 className="text-3xl font-bold text-white mb-4">
+            Technologies I Master
+          </h3>
+          <p className="text-gray-400 text-lg">
+            Interactive 3D representations of my technical expertise
           </p>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex flex-row flex-wrap justify-center gap-10"
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="flex flex-row flex-wrap justify-center gap-12 max-w-7xl mx-auto"
         >
           {technologies.map((technology, index) => (
             <motion.div
               key={technology.name}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="w-28 h-28"
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="w-32 h-32 flex flex-col items-center"
             >
-              <BallCanvas icon={technology.icon} />
+              <div className="w-full h-full">
+                <BallCanvas icon={technology.icon} />
+              </div>
+              <p className="text-white text-sm mt-3 font-medium text-center">
+                {technology.name}
+              </p>
             </motion.div>
           ))}
         </motion.div>
