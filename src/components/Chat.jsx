@@ -359,7 +359,7 @@ const Chat = ({ isOpen, onClose }) => {
               className={`h-10 w-10 flex items-center justify-center ${isListening ? 'bg-red-600' : 'bg-gray-700'} text-white rounded-r-lg focus:outline-none ml-2`}
               title={isListening ? "Stop listening" : "Start voice input"}
             >
-              <img src={micIcon} alt="Microphone" className="w-7 h-7" />
+              <img src={micIcon} alt="Microphone" className="w-15 h-7" />
             </button>
           </div>
           <div className="flex justify-between items-center">
