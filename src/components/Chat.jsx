@@ -15,47 +15,364 @@ const Chat = ({ isOpen, onClose }) => {
   const recognitionRef = useRef(null);
   const speechRef = useRef(null);
 
-  // Random positive expressions for relevant questions
-  const positiveExpressions = [
-    "Rhulani is absolutely incredible! ",
-    "You got an idea, he'll turn it into a solution, he's truly exceptional! ",
-    "Rhulani is absolutely brilliant! ",
-    "Rhulani is incredibly talented! ",
-    "He is absolutely outstanding! ",
-    "For someone who is remarkably skilled! ",
-    "He absolutely phenomenal! ",
-    "Rhulani is incredibly impressive! ",
-    "Rhulani is absolutely marvelous! ",
-    "Rhulani is exceptionally gifted! ",
-    "Rhulani is absolutely fantastic! ",
-    "Rhulani is incredibly accomplished! ",
-    "Rhulani is absolutely remarkable! ",
-    "Rhulani is exceptionally talented! ",
-    "Rhulani is absolutely extraordinary! "
-  ];
-
-  // Random expressions for irrelevant questions
-  const irrelevantExpressions = [
-    "I'm not sure that's related to Rhulani's portfolio, but ",
-    "That's an interesting question, though not portfolio-related. ",
-    "I'm here to help with portfolio questions, but ",
-    "That's outside my scope, but ",
-    "I'm focused on Rhulani's work, but ",
-    "That's not really about the portfolio, but ",
-    "I'm here for portfolio questions, though ",
-    "That's beyond my expertise, but ",
-    "I'm designed for portfolio help, but ",
-    "That's not portfolio-related, but "
-  ];
-
-  // Function to get random positive expression
-  const getRandomExpression = () => {
-    return positiveExpressions[Math.floor(Math.random() * positiveExpressions.length)];
+  // Comprehensive knowledge base about Rhulani
+  const rhulaniKnowledge = {
+    personal: {
+      name: "Rhulani Mashala",
+      location: "Port Shepstone | Oslo Beach, South Africa",
+      contact: {
+        phone: "+27 65 944 3519",
+        email: "nascode.dev@gmail.com",
+        portfolio: "https://nas103.github.io/threeJS_portfolio"
+      },
+      languages: ["English (Native)"],
+      education: [
+        {
+          institution: "Holberton School & ALX",
+          degree: "Diploma Software Engineering",
+          period: "2023 - 2025"
+        },
+        {
+          institution: "ATTI COLLEGE",
+          degree: "N4 Systems and Web Development",
+          period: "2018 - 2019"
+        },
+        {
+          institution: "UNISA",
+          degree: "Diploma Accounting Sciences",
+          period: "2025 - 2028"
+        }
+      ]
+    },
+    skills: {
+      programming: ["Python", "JavaScript (ES6+)", "TypeScript", "C", "SQL", "NoSQL", "Java", "Ruby", "HTML5", "C#"],
+      webBackend: ["Flask", "FastAPI", "Express.js", "Next.js", "SQLAlchemy", "RESTful APIs", "Redis", "PostgreSQL", "Node.js", ".NET"],
+      frontend3D: ["React.js", "Three.js", "WebGL", "Tailwind CSS", "Next.js"],
+      aiDataScience: ["TensorFlow", "PyTorch", "NLP", "Computer Vision", "Generative AI", "Machine Learning", "Deep Learning", "LLM", "Scikit-Learn", "Neural Networks"],
+      cloudDevOps: ["AWS (EC2, S3, Lambda, DynamoDB)", "Docker", "Kubernetes", "CI/CD"],
+      mobile: ["Swift", "Kotlin", "React Native", "IBM Cloud Mobile Services", "UI/UX Development"],
+      securityIT: ["Linux Admin", "Networking", "Encryption", "Firewalls"]
+    },
+    experience: [
+      {
+        company: "Heybash FZCO",
+        position: "Full-Stack Developer Intern",
+        period: "Present",
+        achievements: [
+          "Developing and maintaining web apps using HubSpot, WordPress, and APIs",
+          "Building custom modules and responsive UI components",
+          "Managing tasks via Teamwork and ensuring timely delivery",
+          "Attending daily stand-up meetings and collaborating with the team",
+          "Maintaining code quality standards, security, and best practices"
+        ]
+      },
+      {
+        company: "ALX",
+        position: "Software Engineer Apprentice",
+        period: "2023 - 2025",
+        achievements: [
+          "Developed software solutions using Agile methodology, achieving a 30% reduction in maintenance costs",
+          "Collaborated with cross-functional teams to design and test scalable software systems, improving user satisfaction by 25%",
+          "Implemented DevOps practices to increase software reliability and efficiency, resulting in a 40% improvement in deployment speed",
+          "Developed a command-line shell in C to emulate popular Unix shells, streamlining interactive program management and increasing productivity by 35%",
+          "Worked with database structures such as SQL, MySQL, PostgreSQL, Redis, and ES6, improving database query performance by 30%",
+          "Collaborated with team members to ensure seamless functionality and a user-friendly experience, contributing to a 25% boost in user engagement metrics",
+          "Implemented efficient coding practices that optimized performance and reduced load times by 40%"
+        ]
+      },
+      {
+        company: "HexSoftwares",
+        position: "AI Engineer | Software Engineer",
+        period: "2023 - 2025",
+        achievements: [
+          "Developed and optimized machine learning models, improving accuracy by 25% through data preprocessing and feature engineering",
+          "Implemented scalable AI pipelines, reducing training time by 30% using parallel computing and cloud resources",
+          "Collaborated with cross-functional teams to deploy ML solutions, enhancing system efficiency and user experience by 20%"
+        ]
+      }
+    ],
+    certifications: [
+      "Computer Science Career Path",
+      "IBM AI Engineer Professional Certificate",
+      "IBM AI Developer Professional Certificate",
+      "Meta Backend Developer Professional Certificate",
+      "Google IT Support Technician Specialist Professional Certificate",
+      "Certified AWS Cloud Practitioner Essentials",
+      "Certified AWS AI Practitioner",
+      "iOS and Android Mobile App Developer Professional Certificate",
+      "Data Science Professional Certificate",
+      "Responsive Web Design Professional Certificate",
+      "JavaScript Algorithms and Data Structures Professional Certificate",
+      "Python Developer Professional Certificate JetBrains",
+      "Certified Python Data Scientist Associate DataCamp"
+    ],
+    achievements: [
+      "Microsoft Learn Challenge | Ignite Edition: Build AI apps with Microsoft Azure services",
+      "Develop AI Applications with Azure AI Services"
+    ],
+    profileSummary: "Innovative Software Engineer & AI Engineer with expertise in full-stack development, AI engineering, IT Support technician, cloud computing, and DevOps. Skilled in building scalable back-end systems, interactive front-end experiences, and AI-powered applications. Strong foundation in data structures, algorithms, and systems engineering, with hands-on experience in AWS, machine learning, and cybersecurity. Passionate about 3D web development, mobile app development, and automation. Proven ability to optimize performance, enhance security, and deliver high-quality software solutions."
   };
 
-  // Function to get random irrelevant expression
-  const getRandomIrrelevantExpression = () => {
-    return irrelevantExpressions[Math.floor(Math.random() * irrelevantExpressions.length)];
+  // Intelligent response generation system
+  const generateIntelligentResponse = (userQuery) => {
+    const query = userQuery.toLowerCase().trim();
+    
+    // Handle greetings with variety
+    if (query.includes("hello") || query.includes("hi") || query.includes("hey")) {
+      const greetings = [
+        `Hello! I'm Rhulani's AI Assistant. I'm excited to tell you all about this incredible developer! What would you like to know about Rhulani?`,
+        `Hi there! Welcome to Rhulani's portfolio. I can tell you everything about his amazing skills, projects, and experience. What interests you most?`,
+        `Hey! I'm here to share all the fascinating details about Rhulani Mashala. He's truly an exceptional developer - what would you like to discover?`
+      ];
+      return greetings[Math.floor(Math.random() * greetings.length)];
+    }
+
+    // Comprehensive "who is Rhulani" response
+    if (query.includes("who") && (query.includes("rhulani") || query.includes("he") || query.includes("him"))) {
+      return `Rhulani Mashala is an incredibly talented and innovative Software Engineer & AI Engineer from South Africa, currently based in Port Shepstone. 
+
+${rhulaniKnowledge.profileSummary}
+
+He's currently working as a Full-Stack Developer Intern at Heybash FZCO, where he's developing web applications using HubSpot, WordPress, and APIs. Previously, he was a Software Engineer Apprentice at ALX, where he achieved remarkable results including a 30% reduction in maintenance costs and a 40% improvement in deployment speed.
+
+Rhulani is passionate about cutting-edge technology, particularly AI/ML, 3D web development, and creating scalable solutions that make a real impact. His combination of technical expertise and problem-solving mindset makes him an exceptional developer who can tackle complex challenges with innovative solutions.`;
+    }
+
+    // Detailed skills response
+    if (query.includes("skill") || query.includes("tech") || query.includes("technology") || query.includes("what can he do")) {
+      return `Rhulani's technical skills are absolutely outstanding! Let me break down his expertise:
+
+**Programming Languages:** ${rhulaniKnowledge.skills.programming.join(", ")}
+
+**Web & Backend Development:** ${rhulaniKnowledge.skills.webBackend.join(", ")}
+
+**Frontend & 3D Development:** ${rhulaniKnowledge.skills.frontend3D.join(", ")}
+
+**AI & Data Science:** ${rhulaniKnowledge.skills.aiDataScience.join(", ")}
+
+**Cloud & DevOps:** ${rhulaniKnowledge.skills.cloudDevOps.join(", ")}
+
+**Mobile Development:** ${rhulaniKnowledge.skills.mobile.join(", ")}
+
+**Security & IT Support:** ${rhulaniKnowledge.skills.securityIT.join(", ")}
+
+What makes Rhulani exceptional is his ability to combine these technologies to create innovative solutions. He's particularly strong in AI/ML applications, 3D web development with Three.js, and building scalable backend systems. His expertise spans the entire development stack, from database design to user interface creation.`;
+    }
+
+    // Detailed experience response
+    if (query.includes("experience") || query.includes("work") || query.includes("job") || query.includes("career")) {
+      return `Rhulani's professional experience is truly impressive! Here's his career journey:
+
+**Current Role - Full-Stack Developer Intern at Heybash FZCO:**
+- Developing and maintaining web applications using HubSpot, WordPress, and APIs
+- Building custom modules and responsive UI components
+- Managing tasks via Teamwork and ensuring timely delivery
+- Attending daily stand-up meetings and collaborating with the team
+- Maintaining code quality standards, security, and best practices
+
+**Software Engineer Apprentice at ALX (2023-2025):**
+- Developed software solutions using Agile methodology, achieving a 30% reduction in maintenance costs
+- Collaborated with cross-functional teams to design and test scalable software systems, improving user satisfaction by 25%
+- Implemented DevOps practices to increase software reliability and efficiency, resulting in a 40% improvement in deployment speed
+- Developed a command-line shell in C to emulate popular Unix shells, streamlining interactive program management and increasing productivity by 35%
+- Worked with database structures such as SQL, MySQL, PostgreSQL, Redis, and ES6, improving database query performance by 30%
+- Collaborated with team members to ensure seamless functionality and a user-friendly experience, contributing to a 25% boost in user engagement metrics
+- Implemented efficient coding practices that optimized performance and reduced load times by 40%
+
+**AI Engineer at HexSoftwares (2023-2025):**
+- Developed and optimized machine learning models, improving accuracy by 25% through data preprocessing and feature engineering
+- Implemented scalable AI pipelines, reducing training time by 30% using parallel computing and cloud resources
+- Collaborated with cross-functional teams to deploy ML solutions, enhancing system efficiency and user experience by 20%
+
+His experience demonstrates consistent growth, leadership, and the ability to deliver measurable results across different technical domains.`;
+    }
+
+    // Projects and portfolio response
+    if (query.includes("project") || query.includes("portfolio") || query.includes("work") || query.includes("what has he built")) {
+      return `Rhulani's projects showcase his incredible creativity and technical prowess! Here are some highlights:
+
+**This 3D Portfolio Website:**
+- Built with React.js and Three.js for stunning 3D visualizations
+- Features interactive 3D elements and smooth animations
+- Demonstrates his expertise in modern web technologies and 3D graphics
+
+**AI-Powered Applications:**
+- Machine learning models with 25% improved accuracy
+- Scalable AI pipelines with 30% faster training times
+- Integration with TensorFlow, PyTorch, and various AI frameworks
+
+**Software Solutions:**
+- Command-line shell in C programming language
+- Database optimization projects with 30% performance improvement
+- DevOps implementations with 40% faster deployment speeds
+
+**Web Applications:**
+- Full-stack solutions using modern frameworks
+- Responsive designs with optimized user experiences
+- API integrations and database management systems
+
+Each project demonstrates Rhulani's ability to solve complex problems, optimize performance, and create user-friendly solutions. His work consistently shows measurable improvements in efficiency, performance, and user satisfaction.`;
+    }
+
+    // AI expertise response
+    if (query.includes("ai") || query.includes("artificial intelligence") || query.includes("machine learning") || query.includes("ml")) {
+      return `Rhulani's expertise in AI is absolutely remarkable! He's deeply knowledgeable about:
+
+**Machine Learning & Deep Learning:**
+- Extensive experience with TensorFlow and PyTorch
+- Neural network design and optimization
+- Computer Vision applications
+- Natural Language Processing (NLP)
+
+**AI Development:**
+- Generative AI technologies
+- Large Language Models (LLM) integration
+- Scikit-Learn for traditional ML algorithms
+- AI pipeline development and optimization
+
+**Real-World Applications:**
+- At HexSoftwares, he improved ML model accuracy by 25%
+- Implemented scalable AI pipelines with 30% faster training times
+- Deployed ML solutions that enhanced system efficiency by 20%
+- Created AI-powered applications that solve real business problems
+
+**Technical Implementation:**
+- API integrations with OpenAI and other AI services
+- Cloud-based AI deployment on AWS
+- Performance optimization for AI applications
+- User-friendly AI interfaces
+
+Rhulani has a unique ability to translate complex AI concepts into practical, user-friendly applications that deliver real value. His combination of theoretical knowledge and practical implementation skills makes him exceptional in the AI field.`;
+    }
+
+    // Education and certifications response
+    if (query.includes("education") || query.includes("degree") || query.includes("certification") || query.includes("certificate") || query.includes("study")) {
+      return `Rhulani's educational background and certifications are impressive! Here's his academic journey:
+
+**Current Education:**
+- **UNISA** - Diploma in Accounting Sciences (2025-2028)
+- **Holberton School & ALX** - Diploma in Software Engineering (2023-2025)
+- **ATTI COLLEGE** - N4 Systems and Web Development (2018-2019)
+
+**Professional Certifications:**
+${rhulaniKnowledge.certifications.map(cert => `• ${cert}`).join('\n')}
+
+**Special Achievements:**
+${rhulaniKnowledge.achievements.map(achievement => `• ${achievement}`).join('\n')}
+
+What's remarkable about Rhulani is his commitment to continuous learning. He's constantly updating his skills through professional certifications and practical experience. His diverse educational background - from systems development to software engineering to accounting - gives him a unique perspective on business and technology integration.
+
+His certifications span multiple domains including AI engineering, cloud computing, mobile development, and data science, showing his versatility and dedication to staying current with industry trends.`;
+    }
+
+    // Contact and collaboration response
+    if (query.includes("contact") || query.includes("hire") || query.includes("collaborate") || query.includes("reach") || query.includes("email") || query.includes("phone")) {
+      return `Great question! Rhulani is always open to exciting opportunities and collaborations. Here's how you can reach him:
+
+**Contact Information:**
+- **Phone:** ${rhulaniKnowledge.personal.contact.phone}
+- **Email:** ${rhulaniKnowledge.personal.contact.email}
+- **Portfolio:** ${rhulaniKnowledge.personal.contact.portfolio}
+- **Location:** ${rhulaniKnowledge.personal.location}
+
+**What Rhulani is looking for:**
+- Full-time software engineering positions
+- AI/ML engineering opportunities
+- Freelance projects and consulting work
+- Open source contributions
+- Innovative technology collaborations
+
+**Areas of interest:**
+- AI-powered applications and solutions
+- Full-stack development projects
+- 3D web development and visualization
+- Mobile app development
+- Cloud computing and DevOps projects
+
+Rhulani is particularly passionate about projects that combine multiple technologies and solve real-world problems. He thrives in environments that encourage innovation and continuous learning. Feel free to reach out with any opportunities or just to discuss technology!`;
+    }
+
+    // Future goals and aspirations
+    if (query.includes("future") || query.includes("goal") || query.includes("aspiration") || query.includes("plan") || query.includes("dream")) {
+      return `Rhulani is incredibly ambitious and forward-thinking! Here are his goals and aspirations:
+
+**Short-term Goals (1-2 years):**
+- Continue advancing his AI engineering expertise
+- Contribute to open-source AI projects
+- Build more innovative 3D web applications
+- Expand his cloud computing and DevOps skills
+
+**Long-term Vision:**
+- Become a leading expert in AI engineering and full-stack development
+- Create groundbreaking technological solutions that make a real difference
+- Lead teams in developing cutting-edge applications
+- Contribute to the advancement of AI technology in Africa and globally
+
+**Areas of Focus:**
+- Advancing AI/ML technologies for practical applications
+- Developing scalable software solutions for businesses
+- Creating innovative user experiences through 3D and interactive technologies
+- Mentoring and inspiring other developers
+
+Rhulani believes in the power of technology to solve real-world problems and is committed to continuous learning and innovation. He's particularly excited about the future of AI and how it can be integrated into everyday applications to improve people's lives.`;
+    }
+
+    // Navigation requests
+    if (query.includes("take me to") || query.includes("go to") || query.includes("navigate to") || query.includes("show me") || query.includes("open")) {
+      let sectionToNavigate = "";
+      let response = "";
+      
+      if (query.includes("about")) {
+        sectionToNavigate = "about";
+        response = "Taking you to the About section where you can learn more about Rhulani's background and story!";
+      } else if (query.includes("work") || query.includes("experience")) {
+        sectionToNavigate = "work";
+        response = "Navigating to the Work Experience section to show you Rhulani's impressive career journey!";
+      } else if (query.includes("project") || query.includes("works")) {
+        sectionToNavigate = "projects";
+        response = "Here are Rhulani's amazing projects that showcase his technical skills and creativity!";
+      } else if (query.includes("contact")) {
+        sectionToNavigate = "contact";
+        response = "Taking you to the Contact section where you can reach out to Rhulani!";
+      } else if (query.includes("tech") || query.includes("technology") || query.includes("skill")) {
+        sectionToNavigate = "tech";
+        response = "Here are the cutting-edge technologies and skills that Rhulani masters!";
+      } else if (query.includes("certifications")) {
+        sectionToNavigate = "certifications";
+        response = "Taking you to the Certifications section to see Rhulani's impressive qualifications!";
+      } else if (query.includes("top") || query.includes("home")) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return "Taking you back to the top of Rhulani's portfolio!";
+      } else {
+        return "I can take you to About, Work, Projects, Tech, Certifications, or Contact sections. Which one would you like to explore?";
+      }
+      
+      if (sectionToNavigate) {
+        setTimeout(() => navigateToSection(sectionToNavigate), 500);
+      }
+      
+      return response;
+    }
+
+    // Handle unclear or off-topic questions
+    if (query.includes("weather") || query.includes("time") || query.includes("date") || query.includes("joke") || query.includes("story") || query.includes("recipe") || query.includes("sport") || query.includes("movie") || query.includes("music")) {
+      return `That's an interesting question, though it's not related to Rhulani's portfolio. I'm specifically designed to help you learn about Rhulani's amazing skills, projects, and experience. 
+
+Is there something about Rhulani's work, background, or technical expertise you'd like to know? I can tell you about his AI engineering skills, full-stack development experience, impressive projects, or his career journey.`;
+    }
+
+    // Default response for unclear questions
+    return `I'd love to tell you more about Rhulani! He's an exceptional developer with expertise in AI engineering, full-stack development, and 3D web technologies. 
+
+You can ask me about:
+• Who Rhulani is and his background
+• His technical skills and technologies
+• His work experience and achievements
+• His projects and portfolio
+• His education and certifications
+• How to contact or collaborate with him
+
+What would you like to know about Rhulani?`;
   };
 
   const scrollToBottom = () => {
@@ -146,105 +463,6 @@ const Chat = ({ isOpen, onClose }) => {
     return false;
   };
 
-  const generateAIResponse = (userQuery) => {
-    const query = userQuery.toLowerCase();
-    
-    // Check for greetings first
-    if (query.includes("hello") || query.includes("hi") || query.includes("hey") || query.includes("good morning") || query.includes("good afternoon") || query.includes("good evening")) {
-      const greetings = [
-        "Hello there! How can I help you learn about Rhulani's portfolio today?",
-        "Hi! Welcome to Rhulani's portfolio. What would you like to know?",
-        "Hey! Great to see you here. How can I assist you with Rhulani's work?",
-        "Hello! I'm here to help you explore Rhulani's skills and projects. What interests you?",
-        "Hi there! Ready to discover what makes Rhulani an exceptional developer?"
-      ];
-      return greetings[Math.floor(Math.random() * greetings.length)];
-    }
-    
-    // Check for navigation requests
-    if (query.includes("take me to") || query.includes("go to") || query.includes("navigate to") || query.includes("show me") || query.includes("open")) {
-      let sectionToNavigate = "";
-      let response = "";
-      
-      if (query.includes("about")) {
-        sectionToNavigate = "about";
-        response = "Taking you to the About section now!";
-      } else if (query.includes("work") || query.includes("experience")) {
-        sectionToNavigate = "work";
-        response = "Navigating to the Work Experience section!";
-      } else if (query.includes("project") || query.includes("works")) {
-        sectionToNavigate = "projects";
-        response = "Here are Rhulani's projects!";
-      } else if (query.includes("contact")) {
-        sectionToNavigate = "contact";
-        response = "Taking you to the Contact section!";
-      } else if (query.includes("tech") || query.includes("technology") || query.includes("skill")) {
-        sectionToNavigate = "tech";
-        response = "Here are the technologies Rhulani works with!";
-      } else if (query.includes("certifications")) {
-        sectionToNavigate = "certifications";
-        response = "Taking you to the Certifications section!";
-      } else if (query.includes("top") || query.includes("home")) {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        return "Taking you back to the top!";
-      } else {
-        return "I can take you to About, Work, Projects, Tech, Certifications, or Contact sections. Which one would you like to see?";
-      }
-      
-      // Navigate immediately for navigation requests
-      if (sectionToNavigate) {
-        setTimeout(() => navigateToSection(sectionToNavigate), 500);
-      }
-      
-      return response;
-    }
-    
-    // Check for relevant portfolio questions
-    if (query.includes("who") && query.includes("rhulani")) {
-      return "Rhulani Mashala is an exceptional AI Engineer and Full-Stack Developer from South Africa. He's incredibly passionate about creating intelligent solutions for real-world challenges and has a remarkable ability to blend cutting-edge AI technology with practical software development.";
-    }
-    
-    if (query.includes("skill") || query.includes("tech") || query.includes("technology")) {
-      return getRandomExpression() + "Rhulani's technical skills are absolutely outstanding! He's a master of multiple programming languages including JavaScript, Python, C++, and Java. His expertise in AI/ML frameworks like TensorFlow and PyTorch is exceptional, and he's incredibly proficient with modern web technologies like React, Node.js, and Three.js. He's also skilled with databases like PostgreSQL and cloud platforms like AWS.";
-    }
-    
-    if (query.includes("experience") || query.includes("work")) {
-      return getRandomExpression() + "Rhulani's professional experience is truly impressive! He's currently working as a Software Engineer at TechCorp, where he's been leading the development of AI-powered applications. Previously, he was an AI Developer at InnovateAI, where he significantly improved system performance by 40%. His ability to mentor junior developers and implement CI/CD pipelines shows his leadership and technical excellence.";
-    }
-    
-    if (query.includes("project") || query.includes("portfolio")) {
-      return getRandomExpression() + "Rhulani's projects are absolutely brilliant! He's built the Xora AI chatbot using OpenAI's GPT technology, created an impressive RPG game with real-time multiplayer features, developed a comprehensive Calorie Counter health app, and of course, this stunning 3D portfolio website using React and Three.js. Each project showcases his creativity and technical prowess.";
-    }
-    
-    if (query.includes("education") || query.includes("degree")) {
-      return "Rhulani holds a Bachelor's degree in Computer Science from the University of Technology, with a specialized focus on Artificial Intelligence and Software Engineering. His academic background perfectly complements his practical skills and real-world experience.";
-    }
-    
-    if (query.includes("certification") || query.includes("certificate")) {
-      return "Rhulani has earned prestigious certifications including AWS Certified Developer, Google Cloud Professional, Microsoft Azure Developer, and TensorFlow Developer Certificate. These certifications demonstrate his commitment to staying current with the latest technologies.";
-    }
-    
-    if (query.includes("ai") || query.includes("artificial intelligence")) {
-      return getRandomExpression() + "Rhulani's expertise in AI is absolutely remarkable! He's deeply knowledgeable about machine learning, deep learning, and natural language processing. He's worked extensively with TensorFlow, PyTorch, and OpenAI APIs, and has a unique ability to translate complex AI concepts into practical, user-friendly applications.";
-    }
-    
-    if (query.includes("future") || query.includes("goal") || query.includes("aspiration")) {
-      return getRandomExpression() + "Rhulani is incredibly ambitious and forward-thinking! He's passionate about advancing AI technology and creating solutions that make a real difference in people's lives. His goal is to become a leading expert in AI engineering and to contribute to groundbreaking technological innovations.";
-    }
-    
-    if (query.includes("hire") || query.includes("contact") || query.includes("collaborate")) {
-      return "You can contact Rhulani through the Contact form at the bottom of the page. Feel free to reach out for collaboration or job opportunities! Would you like me to take you to the contact section?";
-    }
-    
-    // Check for irrelevant questions
-    if (query.includes("weather") || query.includes("time") || query.includes("date") || query.includes("joke") || query.includes("story") || query.includes("recipe") || query.includes("sport") || query.includes("movie") || query.includes("music")) {
-      return getRandomIrrelevantExpression() + "I'm specifically designed to help with questions about Rhulani's portfolio, skills, and projects. Is there something about his work you'd like to know?";
-    }
-    
-    // Default response for unclear questions
-    return "I'm here to help you learn about Rhulani's portfolio! You can ask me about his skills, projects, experience, certifications, or I can navigate you to different sections. What would you like to know?";
-  };
-
   const handleSend = async (e) => {
     e.preventDefault();
 
@@ -258,7 +476,7 @@ const Chat = ({ isOpen, onClose }) => {
 
     try {
       // Generate AI response
-      const aiResponse = generateAIResponse(input);
+      const aiResponse = generateIntelligentResponse(input);
       
       setTimeout(() => {
         const responseMessage = { text: aiResponse, sender: "ai" };
