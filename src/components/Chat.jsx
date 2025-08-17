@@ -144,7 +144,7 @@ Rhulani is passionate about cutting-edge technology, particularly AI/ML, 3D web 
     }
 
     // Detailed skills response
-    if (query.includes("skill") || query.includes("tech") || query.includes("technology") || query.includes("what can he do")) {
+    if (query.includes("skill") || query.includes("tech") || query.includes("technology") || query.includes("what can he do") || query.includes("what is he good at") || query.includes("what are his skills") || query.includes("what does he know") || query.includes("what is his expertise") || query.includes("what is his knowledge") || query.includes("tell me about his skills") || query.includes("tell me about his expertise")) {
       return `Rhulani's technical skills are absolutely outstanding! Let me break down his expertise:
 
   Programming Languages: ${rhulaniKnowledge.skills.programming.join(", ")}
@@ -165,10 +165,10 @@ What makes Rhulani exceptional is his ability to combine these technologies to c
     }
 
     // Detailed experience response
-    if (query.includes("experience") || query.includes("work") || query.includes("job") || query.includes("career")) {
+    if (query.includes("experience") || query.includes("work") || query.includes("job") || query.includes("career") || query.includes("what has he done") || query.includes("what is his work history") || query.includes("what is his career journey") || query.includes("tell me about his work experience") || query.includes("tell me about his career") || query.includes("tell me about his work") || query.includes("tell me about his professional experience")) {
       return `Rhulani's professional experience is truly impressive! Here's his career journey:
 
-Current Role - Full-Stack Developer Intern at Heybash FZCO:
+Current Role - Full-Stack Developer at Heybash FZCO:
   Developing and maintaining web applications using HubSpot, WordPress, and APIs
   Building custom modules and responsive UI components
   Managing tasks via Teamwork and ensuring timely delivery
@@ -193,7 +193,7 @@ His experience demonstrates consistent growth, leadership, and the ability to de
     }
 
     // Projects and portfolio response
-    if (query.includes("project") || query.includes("portfolio") || query.includes("work") || query.includes("what has he built")) {
+    if (query.includes("tell me about his projects") || query.includes("portfolio") || query.includes("what did he create so far") || query.includes("what has he built")) {
       return `Rhulani's projects showcase his incredible creativity and technical prowess! Here are some highlights:
 
 This 3D Portfolio Website:
@@ -247,11 +247,11 @@ Technical Implementation:
   Performance optimization for AI applications
   User-friendly AI interfaces
 
-Rhulani has a unique ability to translate complex AI concepts into practical, user-friendly applications that deliver real value. His combination of theoretical knowledge and practical implementation skills makes him exceptional in the AI field.`;
+He has a unique ability to translate complex AI concepts into practical, user-friendly applications that deliver real value. His combination of theoretical knowledge and practical implementation skills makes him exceptional in the AI field.`;
     }
 
     // Education and certifications response
-    if (query.includes("education") || query.includes("degree") || query.includes("certification") || query.includes("certificate") || query.includes("study")) {
+    if (query.includes("what about his education") || query.includes("degree") || query.includes("certification") || query.includes("certificate") || query.includes("study") || query.includes("academic") || query.includes("school") || query.includes("university") || query.includes("college") || query.includes("diploma") || query.includes("qualification") || query.includes("tell me about his education") || query.includes("tell me about his certifications") || query.includes("tell me about his academic background") || query.includes("tell me about his qualifications")) {
       return `Rhulani's educational background and certifications are impressive! Here's his academic journey:
 
 Current Education:
@@ -273,7 +273,7 @@ His certifications span multiple domains including AI engineering, cloud computi
     }
 
     // Contact and collaboration response
-    if (query.includes("contact") || query.includes("hire") || query.includes("collaborate") || query.includes("reach") || query.includes("email") || query.includes("phone")) {
+    if (query.includes("contact") || query.includes("how can i hire him") || query.includes("how can i collaborate with him") || query.includes("how can i reach him") || query.includes("what's his email") || query.includes("what's his phone number") || query.includes("how to get in touch with him") || query.includes("how to connect with him") || query.includes("how to work with him") || query.includes("how to collaborate with him") || query.includes("how to contact him")) {
       return `Great question! Rhulani is always open to exciting opportunities and collaborations. Here's how you can reach him:
 
 Contact Information:
@@ -296,12 +296,12 @@ Areas of interest:
   Mobile app development
   Cloud computing and DevOps projects
 
-Rhulani is particularly passionate about projects that combine multiple technologies and solve real-world problems. He thrives in environments that encourage innovation and continuous learning. Feel free to reach out with any opportunities or just to discuss technology!`;
+He is particularly passionate about projects that combine multiple technologies and solve real-world problems. He thrives in environments that encourage innovation and continuous learning. Feel free to reach out with any opportunities or just to discuss technology!`;
     }
 
     // Future goals and aspirations
-    if (query.includes("future") || query.includes("goal") || query.includes("aspiration") || query.includes("plan") || query.includes("dream")) {
-      return `Rhulani is incredibly ambitious and forward-thinking! Here are his goals and aspirations:
+    if (query.includes("what's his future like at the moment") || query.includes("what's his goal") || query.includes("aspiration") || query.includes("plan") || query.includes("dream") || query.includes("vision") || query.includes("ambition") || query.includes("what does he want to achieve") || query.includes("what are his future plans") || query.includes("what are his aspirations") || query.includes("what are his goals") || query.includes("tell me about his future plans") || query.includes("tell me about his aspirations") || query.includes("tell me about his goals") || query.includes("tell me about his vision") || query.includes("tell me about his ambition")) {
+      return `He is ambitious and forward-thinking! Here are his goals and aspirations:
 
 Short-term Goals (1-2 years):
   Continue advancing his AI engineering expertise
@@ -321,7 +321,7 @@ Areas of Focus:
   Creating innovative user experiences through 3D and interactive technologies
   Mentoring and inspiring other developers 
 
-Rhulani believes in the power of technology to solve real-world problems and is committed to continuous learning and innovation. He's particularly excited about the future of AI and how it can be integrated into everyday applications to improve people's lives.`;
+He believes in the power of technology to solve real-world problems and is committed to continuous learning and innovation. He's particularly excited about the future of AI and how it can be integrated into everyday applications to improve people's lives.`;
     }
 
     // Navigation requests
