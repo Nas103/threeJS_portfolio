@@ -30,17 +30,22 @@ const Chat = ({ isOpen, onClose }) => {
         {
           institution: "Holberton School & ALX",
           degree: "Diploma Software Engineering",
-          period: "2023 - 2025"
+          period: "2023 to 2025"
         },
         {
           institution: "ATTI COLLEGE",
           degree: "N4 Systems and Web Development",
-          period: "2018 - 2019"
+          period: "2018 to 2019"
         },
         {
           institution: "UNISA",
           degree: "Diploma Accounting Sciences",
-          period: "2025 - 2028"
+          period: "2025 to 2028"
+        },
+        {
+          institution: "Heriot-watt University",
+          degree: "MSc Computer Science",
+          period: "2025 to 2028"
         }
       ]
     },
@@ -69,7 +74,7 @@ const Chat = ({ isOpen, onClose }) => {
       {
         company: "ALX",
         position: "Software Engineer Apprentice",
-        period: "2023 - 2025",
+        period: "2023 to 2025",
         achievements: [
           "Developed software solutions using Agile methodology, achieving a 30% reduction in maintenance costs",
           "Collaborated with cross-functional teams to design and test scalable software systems, improving user satisfaction by 25%",
@@ -83,7 +88,7 @@ const Chat = ({ isOpen, onClose }) => {
       {
         company: "HexSoftwares",
         position: "AI Engineer | Software Engineer",
-        period: "2023 - 2025",
+        period: "2023 to 2025",
         achievements: [
           "Developed and optimized machine learning models, improving accuracy by 25% through data preprocessing and feature engineering",
           "Implemented scalable AI pipelines, reducing training time by 30% using parallel computing and cloud resources",
@@ -118,7 +123,7 @@ const Chat = ({ isOpen, onClose }) => {
     const query = userQuery.toLowerCase().trim();
     
     // Handle greetings with variety
-    if (query.includes("hello") || query.includes("hi") || query.includes("hey")) {
+    if (query.includes("hello") || query.includes("hi") || query.includes("hey") || query.includes("greetings") || query.includes("what's up") || query.includes("how are you")) {
       const greetings = [
         `Hello! I'm Rhulani's AI Assistant. I'm excited to tell you all about this incredible developer! What would you like to know about Rhulani?`,
         `Hi there! Welcome to Rhulani's portfolio. I can tell you everything about his amazing skills, projects, and experience. What interests you most?`,
@@ -128,7 +133,7 @@ const Chat = ({ isOpen, onClose }) => {
     }
 
     // Comprehensive "who is Rhulani" response
-    if (query.includes("who") && (query.includes("rhulani") || query.includes("he") || query.includes("him"))) {
+    if (query.includes("who") && (query.includes("rhulani") || query.includes("he") || query.includes("him") || query.includes("tell me about him") || query.includes("tell me about rhulani"))) {
       return `Rhulani Mashala is an incredibly talented and innovative Software Engineer & AI Engineer from South Africa, currently based in Port Shepstone. 
 
 ${rhulaniKnowledge.profileSummary}
@@ -142,19 +147,19 @@ Rhulani is passionate about cutting-edge technology, particularly AI/ML, 3D web 
     if (query.includes("skill") || query.includes("tech") || query.includes("technology") || query.includes("what can he do")) {
       return `Rhulani's technical skills are absolutely outstanding! Let me break down his expertise:
 
-**Programming Languages:** ${rhulaniKnowledge.skills.programming.join(", ")}
+  Programming Languages: ${rhulaniKnowledge.skills.programming.join(", ")}
 
-**Web & Backend Development:** ${rhulaniKnowledge.skills.webBackend.join(", ")}
+  Web & Backend Development: ${rhulaniKnowledge.skills.webBackend.join(", ")}
 
-**Frontend & 3D Development:** ${rhulaniKnowledge.skills.frontend3D.join(", ")}
+  Frontend & 3D Development: ${rhulaniKnowledge.skills.frontend3D.join(", ")}
 
-**AI & Data Science:** ${rhulaniKnowledge.skills.aiDataScience.join(", ")}
+  AI & Data Science: ${rhulaniKnowledge.skills.aiDataScience.join(", ")}
 
-**Cloud & DevOps:** ${rhulaniKnowledge.skills.cloudDevOps.join(", ")}
+  Cloud & DevOps: ${rhulaniKnowledge.skills.cloudDevOps.join(", ")}
 
-**Mobile Development:** ${rhulaniKnowledge.skills.mobile.join(", ")}
+  Mobile Development:** ${rhulaniKnowledge.skills.mobile.join(", ")}
 
-**Security & IT Support:** ${rhulaniKnowledge.skills.securityIT.join(", ")}
+  Security & IT Support: ${rhulaniKnowledge.skills.securityIT.join(", ")}
 
 What makes Rhulani exceptional is his ability to combine these technologies to create innovative solutions. He's particularly strong in AI/ML applications, 3D web development with Three.js, and building scalable backend systems. His expertise spans the entire development stack, from database design to user interface creation.`;
     }
@@ -163,26 +168,26 @@ What makes Rhulani exceptional is his ability to combine these technologies to c
     if (query.includes("experience") || query.includes("work") || query.includes("job") || query.includes("career")) {
       return `Rhulani's professional experience is truly impressive! Here's his career journey:
 
-**Current Role - Full-Stack Developer Intern at Heybash FZCO:**
-- Developing and maintaining web applications using HubSpot, WordPress, and APIs
-- Building custom modules and responsive UI components
-- Managing tasks via Teamwork and ensuring timely delivery
-- Attending daily stand-up meetings and collaborating with the team
-- Maintaining code quality standards, security, and best practices
+Current Role - Full-Stack Developer Intern at Heybash FZCO:
+  Developing and maintaining web applications using HubSpot, WordPress, and APIs
+  Building custom modules and responsive UI components
+  Managing tasks via Teamwork and ensuring timely delivery
+  Attending daily stand-up meetings and collaborating with the team
+  Maintaining code quality standards, security, and best practices
 
-**Software Engineer Apprentice at ALX (2023-2025):**
-- Developed software solutions using Agile methodology, achieving a 30% reduction in maintenance costs
-- Collaborated with cross-functional teams to design and test scalable software systems, improving user satisfaction by 25%
-- Implemented DevOps practices to increase software reliability and efficiency, resulting in a 40% improvement in deployment speed
-- Developed a command-line shell in C to emulate popular Unix shells, streamlining interactive program management and increasing productivity by 35%
-- Worked with database structures such as SQL, MySQL, PostgreSQL, Redis, and ES6, improving database query performance by 30%
-- Collaborated with team members to ensure seamless functionality and a user-friendly experience, contributing to a 25% boost in user engagement metrics
-- Implemented efficient coding practices that optimized performance and reduced load times by 40%
+Software Engineer Apprentice at ALX (2023-2025):
+  Developed software solutions using Agile methodology, achieving a 30% reduction in maintenance costs
+  Collaborated with cross-functional teams to design and test scalable software systems, improving user satisfaction by 25%
+  Implemented DevOps practices to increase software reliability and efficiency, resulting in a 40% improvement in deployment speed
+  Developed a command-line shell in C to emulate popular Unix shells, streamlining interactive program management and increasing productivity by 35%
+  Worked with database structures such as SQL, MySQL, PostgreSQL, Redis, and ES6, improving database query performance by 30%
+  Collaborated with team members to ensure seamless functionality and a user-friendly experience, contributing to a 25% boost in user engagement metrics
+  Implemented efficient coding practices that optimized performance and reduced load times by 40%
 
-**AI Engineer at HexSoftwares (2023-2025):**
-- Developed and optimized machine learning models, improving accuracy by 25% through data preprocessing and feature engineering
-- Implemented scalable AI pipelines, reducing training time by 30% using parallel computing and cloud resources
-- Collaborated with cross-functional teams to deploy ML solutions, enhancing system efficiency and user experience by 20%
+AI Engineer at HexSoftwares (2023-2025):
+  Developed and optimized machine learning models, improving accuracy by 25% through data preprocessing and feature engineering
+  Implemented scalable AI pipelines, reducing training time by 30% using parallel computing and cloud resources
+  Collaborated with cross-functional teams to deploy ML solutions, enhancing system efficiency and user experience by 20%
 
 His experience demonstrates consistent growth, leadership, and the ability to deliver measurable results across different technical domains.`;
     }
@@ -191,25 +196,25 @@ His experience demonstrates consistent growth, leadership, and the ability to de
     if (query.includes("project") || query.includes("portfolio") || query.includes("work") || query.includes("what has he built")) {
       return `Rhulani's projects showcase his incredible creativity and technical prowess! Here are some highlights:
 
-**This 3D Portfolio Website:**
-- Built with React.js and Three.js for stunning 3D visualizations
-- Features interactive 3D elements and smooth animations
-- Demonstrates his expertise in modern web technologies and 3D graphics
+This 3D Portfolio Website:
+  Built with React.js and Three.js for stunning 3D visualizations
+  Features interactive 3D elements and smooth animations
+  Demonstrates his expertise in modern web technologies and 3D graphics
 
-**AI-Powered Applications:**
-- Machine learning models with 25% improved accuracy
-- Scalable AI pipelines with 30% faster training times
-- Integration with TensorFlow, PyTorch, and various AI frameworks
+AI-Powered Applications:
+  Machine learning models with 25% improved accuracy
+  Scalable AI pipelines with 30% faster training times
+  Integration with TensorFlow, PyTorch, and various AI frameworks
 
-**Software Solutions:**
-- Command-line shell in C programming language
-- Database optimization projects with 30% performance improvement
-- DevOps implementations with 40% faster deployment speeds
+Software Solutions:
+  Command-line shell in C programming language
+  Database optimization projects with 30% performance improvement
+  DevOps implementations with 40% faster deployment speeds
 
-**Web Applications:**
-- Full-stack solutions using modern frameworks
-- Responsive designs with optimized user experiences
-- API integrations and database management systems
+Web Applications:
+  Full-stack solutions using modern frameworks
+  Responsive designs with optimized user experiences
+  API integrations and database management systems
 
 Each project demonstrates Rhulani's ability to solve complex problems, optimize performance, and create user-friendly solutions. His work consistently shows measurable improvements in efficiency, performance, and user satisfaction.`;
     }
@@ -218,29 +223,29 @@ Each project demonstrates Rhulani's ability to solve complex problems, optimize 
     if (query.includes("ai") || query.includes("artificial intelligence") || query.includes("machine learning") || query.includes("ml")) {
       return `Rhulani's expertise in AI is absolutely remarkable! He's deeply knowledgeable about:
 
-**Machine Learning & Deep Learning:**
-- Extensive experience with TensorFlow and PyTorch
-- Neural network design and optimization
-- Computer Vision applications
-- Natural Language Processing (NLP)
+Machine Learning & Deep Learning:
+  Extensive experience with TensorFlow and PyTorch
+  Neural network design and optimization
+  Computer Vision applications
+  Natural Language Processing (NLP)
 
-**AI Development:**
-- Generative AI technologies
-- Large Language Models (LLM) integration
-- Scikit-Learn for traditional ML algorithms
-- AI pipeline development and optimization
+AI Development:
+  Generative AI technologies
+  Large Language Models (LLM) integration
+  Scikit-Learn for traditional ML algorithms
+  AI pipeline development and optimization
 
-**Real-World Applications:**
-- At HexSoftwares, he improved ML model accuracy by 25%
-- Implemented scalable AI pipelines with 30% faster training times
-- Deployed ML solutions that enhanced system efficiency by 20%
-- Created AI-powered applications that solve real business problems
+Real-World Applications:
+  At HexSoftwares, he improved ML model accuracy by 25%
+  Implemented scalable AI pipelines with 30% faster training times
+  Deployed ML solutions that enhanced system efficiency by 20%
+  Created AI-powered applications that solve real business problems
 
-**Technical Implementation:**
-- API integrations with OpenAI and other AI services
-- Cloud-based AI deployment on AWS
-- Performance optimization for AI applications
-- User-friendly AI interfaces
+Technical Implementation:
+  API integrations with OpenAI and other AI services
+  Cloud-based AI deployment on AWS
+  Performance optimization for AI applications
+  User-friendly AI interfaces
 
 Rhulani has a unique ability to translate complex AI concepts into practical, user-friendly applications that deliver real value. His combination of theoretical knowledge and practical implementation skills makes him exceptional in the AI field.`;
     }
@@ -249,15 +254,17 @@ Rhulani has a unique ability to translate complex AI concepts into practical, us
     if (query.includes("education") || query.includes("degree") || query.includes("certification") || query.includes("certificate") || query.includes("study")) {
       return `Rhulani's educational background and certifications are impressive! Here's his academic journey:
 
-**Current Education:**
-- **UNISA** - Diploma in Accounting Sciences (2025-2028)
-- **Holberton School & ALX** - Diploma in Software Engineering (2023-2025)
-- **ATTI COLLEGE** - N4 Systems and Web Development (2018-2019)
+Current Education:
+  UNISA - Diploma in Accounting Sciences (2025 to 2028)
+  Holberton School & ALX - Diploma in Software Engineering (2023 to 2025)
+  ATTI COLLEGE - N4 Systems and Web Development (2018 to 2019)
+  Heriot-watt University - MSc in Computer Science (2025 to 2028)
+Rhulani has a strong foundation in software engineering, systems development, and accounting, which gives him a unique perspective on technology and business integration.
 
-**Professional Certifications:**
+Professional Certifications:
 ${rhulaniKnowledge.certifications.map(cert => `• ${cert}`).join('\n')}
 
-**Special Achievements:**
+Special Achievements:
 ${rhulaniKnowledge.achievements.map(achievement => `• ${achievement}`).join('\n')}
 
 What's remarkable about Rhulani is his commitment to continuous learning. He's constantly updating his skills through professional certifications and practical experience. His diverse educational background - from systems development to software engineering to accounting - gives him a unique perspective on business and technology integration.
@@ -269,25 +276,25 @@ His certifications span multiple domains including AI engineering, cloud computi
     if (query.includes("contact") || query.includes("hire") || query.includes("collaborate") || query.includes("reach") || query.includes("email") || query.includes("phone")) {
       return `Great question! Rhulani is always open to exciting opportunities and collaborations. Here's how you can reach him:
 
-**Contact Information:**
-- **Phone:** ${rhulaniKnowledge.personal.contact.phone}
-- **Email:** ${rhulaniKnowledge.personal.contact.email}
-- **Portfolio:** ${rhulaniKnowledge.personal.contact.portfolio}
-- **Location:** ${rhulaniKnowledge.personal.location}
+Contact Information:
+  Phone: ${rhulaniKnowledge.personal.contact.phone}
+  Email: ${rhulaniKnowledge.personal.contact.email}
+  Portfolio: ${rhulaniKnowledge.personal.contact.portfolio}
+  Location: ${rhulaniKnowledge.personal.location}
 
-**What Rhulani is looking for:**
-- Full-time software engineering positions
-- AI/ML engineering opportunities
-- Freelance projects and consulting work
-- Open source contributions
-- Innovative technology collaborations
+What Rhulani is looking for:
+  Full-time software engineering positions
+  AI/ML engineering opportunities
+  Freelance projects and consulting work
+  Open source contributions
+  Innovative technology collaborations
 
-**Areas of interest:**
-- AI-powered applications and solutions
-- Full-stack development projects
-- 3D web development and visualization
-- Mobile app development
-- Cloud computing and DevOps projects
+Areas of interest:
+  AI-powered applications and solutions
+  Full-stack development projects
+  3D web development and visualization
+  Mobile app development
+  Cloud computing and DevOps projects
 
 Rhulani is particularly passionate about projects that combine multiple technologies and solve real-world problems. He thrives in environments that encourage innovation and continuous learning. Feel free to reach out with any opportunities or just to discuss technology!`;
     }
@@ -296,23 +303,23 @@ Rhulani is particularly passionate about projects that combine multiple technolo
     if (query.includes("future") || query.includes("goal") || query.includes("aspiration") || query.includes("plan") || query.includes("dream")) {
       return `Rhulani is incredibly ambitious and forward-thinking! Here are his goals and aspirations:
 
-**Short-term Goals (1-2 years):**
-- Continue advancing his AI engineering expertise
-- Contribute to open-source AI projects
-- Build more innovative 3D web applications
-- Expand his cloud computing and DevOps skills
+Short-term Goals (1-2 years):
+  Continue advancing his AI engineering expertise
+  Contribute to open-source AI projects
+  Build more innovative 3D web applications
+  Expand his cloud computing and DevOps skills
 
-**Long-term Vision:**
-- Become a leading expert in AI engineering and full-stack development
-- Create groundbreaking technological solutions that make a real difference
-- Lead teams in developing cutting-edge applications
-- Contribute to the advancement of AI technology in Africa and globally
+Long-term Vision:
+  Become a leading expert in AI engineering and full-stack development
+  Create groundbreaking technological solutions that make a real difference
+  Lead teams in developing cutting-edge applications
+  Contribute to the advancement of AI technology in Africa and globally
 
-**Areas of Focus:**
-- Advancing AI/ML technologies for practical applications
-- Developing scalable software solutions for businesses
-- Creating innovative user experiences through 3D and interactive technologies
-- Mentoring and inspiring other developers
+Areas of Focus:
+  Advancing AI/ML technologies for practical applications
+  Developing scalable software solutions for businesses
+  Creating innovative user experiences through 3D and interactive technologies
+  Mentoring and inspiring other developers 
 
 Rhulani believes in the power of technology to solve real-world problems and is committed to continuous learning and innovation. He's particularly excited about the future of AI and how it can be integrated into everyday applications to improve people's lives.`;
     }

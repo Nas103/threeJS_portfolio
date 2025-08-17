@@ -100,7 +100,7 @@ const technologies = [
         icon: reactjs,
     },
     {
-        name: "Redux",
+        name: "Three JS",
         icon: threejs,
     },
     {
@@ -116,7 +116,7 @@ const technologies = [
         icon: mongodb,
     },
     {
-        name: "Three JS",
+        name: "Python",
         icon: python,
     },
     {
