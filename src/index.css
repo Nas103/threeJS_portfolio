@@ -350,3 +350,24 @@ h1, h2, h3, h4, .font-display {
   100% { transform: translateX(-50%); }
 }
 .animate-marquee { animation: marquee 40s linear infinite; }
+
+/* Experience card hover zoom */
+.exp-card {
+  perspective: 1200px;
+}
+.exp-card .vertical-timeline-element-content,
+.exp-card .vertical-timeline-element-icon {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.exp-card:hover .vertical-timeline-element-content {
+  transform: scale(1.06) translateZ(60px);
+  box-shadow: 0 34px 90px -30px rgba(0, 0, 0, 0.85), 0 0 34px rgba(123, 97, 255, 0.35);
+  border-color: rgba(167, 139, 250, 0.4) !important;
+}
+.exp-card:hover .vertical-timeline-element-icon {
+  transform: scale(1.12) translateZ(30px);
+}

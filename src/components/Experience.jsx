@@ -13,6 +13,7 @@ import { textVariant, staggerContainer } from "../utils/motion.js";
 
 const ExperienceCard = ({ experience }) => (
   <VerticalTimelineElement
+    className='exp-card'
     contentStyle={{
       background: "rgba(13, 15, 34, 0.72)",
       color: "#fff",
