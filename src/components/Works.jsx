@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 import { styles } from "../styles.js";
 import { github } from "../assets";
-import { RibbonGlow } from "./canvas/index.js";
+import { RibbonGlow, KeepAlive } from "./canvas/index.js";
 import { projects } from "../constants/index.js";
 import { fadeIn, textVariant, staggerContainer } from "../utils/motion.js";
 
@@ -65,7 +65,12 @@ const Works = () => (
     className='relative w-full overflow-hidden'
   >
     {/* Projects background — Ribbon Glow */}
-    <div className='absolute inset-0'>
+    <KeepAlive
+      className='absolute inset-0'
+      placeholder={
+        <div className='absolute inset-0 bg-gradient-to-b from-[#08060f] via-[#0d0f22] to-[#08060f]' />
+      }
+    >
       <RibbonGlow
         background='#08060f'
         color1='#f0abfc'
@@ -76,7 +81,7 @@ const Works = () => (
         hover={75}
         reach={320}
       />
-    </div>
+    </KeepAlive>
 
     {/* readability + texture overlays */}
     <div className='absolute inset-0 bg-gradient-to-b from-[#05060f] via-[#05060f]/72 to-[#05060f] pointer-events-none' />

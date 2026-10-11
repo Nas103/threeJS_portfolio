@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 
 import { styles } from "../styles.js";
 import { certifications, education } from "../constants/index.js";
-import { SectionWrapper } from "../hoc/index.js";
-import { fadeIn, textVariant } from "../utils/motion.js";
+import { TubesCursorBg, KeepAlive, CanvasErrorBoundary } from "./canvas/index.js";
+import { fadeIn, textVariant, staggerContainer } from "../utils/motion.js";
 
 const orgStyle = {
   IBM: { color: "#5aa0f0", glyph: "I" },
@@ -11,6 +11,10 @@ const orgStyle = {
   Google: { color: "#4aa7ff", glyph: "G" },
   Meta: { color: "#22a7f0", glyph: "M" },
 };
+
+const bgFallback = (
+  <div className='absolute inset-0 bg-gradient-to-b from-[#05060f] via-[#0b1226] to-[#05060f]' />
+);
 
 const CertificationCard = ({ index, title, organization, date, description }) => {
   const accent = orgStyle[organization] || { color: "#a78bfa", glyph: "✓" };
@@ -68,39 +72,62 @@ const EducationCard = ({ index, title, organization, date, description }) => (
 );
 
 const Certifications = () => (
-  <>
-    <motion.div variants={textVariant()}>
-      <p className={`${styles.sectionSubText} text-center`}>
-        <span className='text-gradient font-semibold'>//</span> Learning never stops
-      </p>
-      <h2 className={`${styles.sectionHeadText} text-center`}>
-        Education &amp; <span className='text-gradient'>credentials</span>.
-      </h2>
-    </motion.div>
+  <motion.section
+    variants={staggerContainer()}
+    initial='hidden'
+    whileInView='show'
+    viewport={{ once: true, amount: 0.15 }}
+    className='relative w-full overflow-hidden'
+  >
+    {/* Education & credentials background — cursor tubes */}
+    <KeepAlive className='absolute inset-0' placeholder={bgFallback}>
+      <CanvasErrorBoundary fallback={bgFallback}>
+        <TubesCursorBg />
+      </CanvasErrorBoundary>
+    </KeepAlive>
 
-    <div className='mt-14 grid md:grid-cols-2 gap-5 max-w-5xl mx-auto'>
-      {education.map((edu, index) => (
-        <EducationCard key={`edu-${index}`} index={index} {...edu} />
-      ))}
-      <motion.div
-        variants={fadeIn("up", "spring", 0.4, 0.6)}
-        className='md:col-span-2 flex items-center justify-center glass rounded-2xl p-5 text-center'
-      >
-        <p className='text-secondary text-[14px]'>
-          <span className='text-white font-semibold'>Professional Certificates:</span>{" "}
-          IBM AI Engineer, IBM AI Developer, AWS AI Practitioner, AWS Cloud
-          Practitioner, Google IT Support, Meta Back-End Development — plus a
-          continued self-driven curriculum in AI &amp; cloud.
+    {/* readability + texture overlays */}
+    <div className='absolute inset-0 bg-gradient-to-b from-[#05060f] via-[#05060f]/50 to-[#05060f] pointer-events-none' />
+    <div className='absolute inset-0 bg-grid opacity-20 pointer-events-none' />
+
+    <div className={`${styles.padding} max-w-7xl mx-auto relative z-10`}>
+      <span className='hash-span' id='certifications'>
+        &nbsp;
+      </span>
+
+      <motion.div variants={textVariant()}>
+        <p className={`${styles.sectionSubText} text-center`}>
+          <span className='text-gradient font-semibold'>//</span> Learning never stops
         </p>
+        <h2 className={`${styles.sectionHeadText} text-center`}>
+          Education &amp; <span className='text-gradient'>credentials</span>.
+        </h2>
       </motion.div>
-    </div>
 
-    <div className='mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5'>
-      {certifications.map((cert, index) => (
-        <CertificationCard key={`cert-${index}`} index={index} {...cert} />
-      ))}
+      <div className='mt-14 grid md:grid-cols-2 gap-5 max-w-5xl mx-auto'>
+        {education.map((edu, index) => (
+          <EducationCard key={`edu-${index}`} index={index} {...edu} />
+        ))}
+        <motion.div
+          variants={fadeIn("up", "spring", 0.4, 0.6)}
+          className='md:col-span-2 flex items-center justify-center glass rounded-2xl p-5 text-center'
+        >
+          <p className='text-secondary text-[14px]'>
+            <span className='text-white font-semibold'>Professional Certificates:</span>{" "}
+            IBM AI Engineer, IBM AI Developer, AWS AI Practitioner, AWS Cloud
+            Practitioner, Google IT Support, Meta Back-End Development — plus a
+            continued self-driven curriculum in AI &amp; cloud.
+          </p>
+        </motion.div>
+      </div>
+
+      <div className='mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5'>
+        {certifications.map((cert, index) => (
+          <CertificationCard key={`cert-${index}`} index={index} {...cert} />
+        ))}
+      </div>
     </div>
-  </>
+  </motion.section>
 );
 
-export default SectionWrapper(Certifications, "certifications");
+export default Certifications;

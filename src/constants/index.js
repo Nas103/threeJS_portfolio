@@ -19,8 +19,9 @@ import {
   sql,
   shell,
   rpg_game,
-  intelligai,
-  lily,
+  intelAi,
+  investmentIntel,
+  NaSO,
   aiCoder,
   portfolioPreview,
   github,
@@ -118,7 +119,7 @@ const experiences = [
 
 const projects = [
   {
-    name: "Lily-s",
+    name: "NaSO",
     description:
       "A complex AI-powered retail web application with an embedded mobile app, blending e-commerce workflows with intelligent recommendations and automation.",
     tags: [
@@ -127,8 +128,8 @@ const projects = [
       { name: "mobile", color: "green-text-gradient" },
       { name: "nextjs", color: "grey-text-gradient" },
     ],
-    image: lily,
-    source_code_link: "https://github.com/Nas103",
+    image: NaSO,
+    source_code_link: "https://lily-s.vercel.app",
   },
   {
     name: "INTELIG-AI",
@@ -140,8 +141,21 @@ const projects = [
       { name: "openAI", color: "green-text-gradient" },
       { name: "aws", color: "yellow-text-gradient" },
     ],
-    image: intelligai,
-    source_code_link: "https://github.com/Nas103",
+    image: intelAi,
+    source_code_link: "https://intel-ai-phi.vercel.app/",
+  },
+  {
+    name: "Investment Intel",
+    description:
+      "An AI-powered investment intelligence platform that surfaces market insights and data-driven analysis to support smarter portfolio decisions.",
+    tags: [
+      { name: "nextjs", color: "grey-text-gradient" },
+      { name: "typescript", color: "blue-text-gradient" },
+      { name: "AI", color: "pink-text-gradient" },
+      { name: "finance", color: "green-text-gradient" },
+    ],
+    image: investmentIntel,
+    source_code_link: "https://investment-intel.vercel.app/",
   },
   {
     name: "AI-Coding-Tutor",
@@ -254,33 +268,6 @@ const education = [
   },
 ];
 
-const testimonials = [
-  {
-    testimonial:
-      "Rhulani built our AI voice agent end-to-end — from API design to deployment. It now handles real customer workflows reliably.",
-    name: "Nexus AI Systems",
-    designation: "Client",
-    company: "Freelance Project",
-    image: "https://randomuser.me/api/portraits/men/32.jpg",
-  },
-  {
-    testimonial:
-      "A pragmatic engineer who ships maintainable features and gets to the root cause of problems fast.",
-    name: "Heybash",
-    designation: "Engineering Team",
-    company: "Software Projects",
-    image: "https://randomuser.me/api/portraits/women/44.jpg",
-  },
-  {
-    testimonial:
-      "Quick to learn, reliable to deliver — Rhulani took requirements from concept to working ML prototypes.",
-    name: "HexSoftwares",
-    designation: "Mentor",
-    company: "Machine Learning Internship",
-    image: "https://randomuser.me/api/portraits/men/12.jpg",
-  },
-];
-
 export const stats = [
   { value: "3+", label: "Years experience" },
   { value: "10+", label: "Projects shipped" },
@@ -297,5 +284,4 @@ export {
   projects,
   certifications,
   education,
-  testimonials,
 };

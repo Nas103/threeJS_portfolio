@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { BallCanvas } from "./canvas/index.js";
+import { BallCanvas, KeepAlive } from "./canvas/index.js";
 import { SectionWrapper } from "../hoc/index.js";
 import { technologies } from "../constants/index.js";
 import { styles } from "../styles.js";
@@ -117,33 +117,31 @@ class IntentModel(nn.Module):
 ];
 
 const Tech = () => {
-  const [currentCode, setCurrentCode] = useState("");
-  const [currentLanguage, setCurrentLanguage] = useState("");
-  const codeIndexRef = useRef(0);
-  const charIndexRef = useRef(0);
+  const [codeIndex, setCodeIndex] = useState(0);
+  const [typed, setTyped] = useState("");
 
   useEffect(() => {
-    const typeCode = () => {
-      if (codeIndexRef.current >= codeExamples.length) {
-        codeIndexRef.current = 0;
-      }
-      const current = codeExamples[codeIndexRef.current];
-      setCurrentLanguage(current.language);
-      if (charIndexRef.current < current.code.length) {
-        setCurrentCode((prev) => prev + current.code[charIndexRef.current]);
-        charIndexRef.current++;
-        setTimeout(typeCode, 30);
+    const full = codeExamples[codeIndex].code;
+    let chars = 0;
+    let timer;
+
+    const tick = () => {
+      chars += 1;
+      setTyped(full.slice(0, chars));
+      if (chars < full.length) {
+        timer = setTimeout(tick, 18);
       } else {
-        setTimeout(() => {
-          setCurrentCode("");
-          charIndexRef.current = 0;
-          codeIndexRef.current++;
-          typeCode();
+        timer = setTimeout(() => {
+          setTyped("");
+          setCodeIndex((i) => (i + 1) % codeExamples.length);
         }, 3200);
       }
     };
-    typeCode();
-  }, []);
+
+    setTyped("");
+    timer = setTimeout(tick, 18);
+    return () => clearTimeout(timer);
+  }, [codeIndex]);
 
   return (
     <>
@@ -171,11 +169,11 @@ const Tech = () => {
           <span className='h-3 w-3 rounded-full bg-yellow-500/80' />
           <span className='h-3 w-3 rounded-full bg-green-500/80' />
           <span className='ml-3 text-[13px] text-secondary font-medium'>
-            {currentLanguage || "..."}
+            {codeExamples[codeIndex].language}
           </span>
         </div>
         <pre className='p-6 text-[13.5px] leading-relaxed font-mono overflow-hidden text-gradient-orange min-h-[240px]'>
-          <code>{currentCode}</code>
+          <code>{typed}</code>
           <span className='text-white animate-pulse'>|</span>
         </pre>
       </div>
@@ -192,7 +190,19 @@ const Tech = () => {
               className='w-28 h-28 sm:w-32 sm:h-32 flex flex-col items-center'
             >
               <div className='w-full h-full'>
-                <BallCanvas icon={technology.icon} />
+                <KeepAlive
+                  placeholder={
+                    <div className='w-full h-full flex items-center justify-center'>
+                      <img
+                        src={technology.icon}
+                        alt={technology.name}
+                        className='w-2/3 h-2/3 object-contain drop-shadow-[0_0_18px_rgba(139,92,246,0.45)]'
+                      />
+                    </div>
+                  }
+                >
+                  <BallCanvas icon={technology.icon} />
+                </KeepAlive>
               </div>
               <p className='text-white text-[12px] sm:text-[13px] mt-2 font-medium text-center'>
                 {technology.name}

@@ -63,7 +63,7 @@ const Navbar = ({ onOpenChat }) => {
             </div>
           </button>
 
-          <ul className='hidden lg:flex items-center gap-7'>
+          <ul className='hidden xl:flex items-center gap-6'>
             {navLinks.map((nav) => (
               <li key={nav.id}>
                 <button
@@ -80,17 +80,17 @@ const Navbar = ({ onOpenChat }) => {
             ))}
           </ul>
 
-          <div className='hidden lg:flex items-center gap-3'>
+          <div className='hidden xl:flex items-center gap-3'>
             <button
               onClick={onOpenChat}
-              className='btn-outline text-white text-[14px] font-medium px-5 py-2 rounded-full flex items-center gap-2'
+              className='btn-outline text-white text-[14px] font-medium px-4 py-2 rounded-full flex items-center gap-2 whitespace-nowrap'
             >
               <span className='h-2 w-2 rounded-full bg-emerald-400 animate-pulse' />
               AI Assistant
             </button>
             <button
               onClick={() => goTo("contact")}
-              className='btn-gradient text-white text-[14px] font-medium px-5 py-2 rounded-full'
+              className='btn-gradient text-white text-[14px] font-medium px-4 py-2 rounded-full whitespace-nowrap'
             >
               Let's Talk
             </button>
@@ -98,7 +98,7 @@ const Navbar = ({ onOpenChat }) => {
 
           <button
             onClick={() => setToggle(!toggle)}
-            className='lg:hidden text-white p-2'
+            className='xl:hidden text-white p-2'
             aria-label='Toggle menu'
           >
             <img src={toggle ? close : menu} alt='menu' className='w-7 h-7 object-contain' />
@@ -107,7 +107,7 @@ const Navbar = ({ onOpenChat }) => {
       </nav>
 
       {toggle && (
-        <div className='lg:hidden fixed top-16 left-4 right-4 glass-strong p-6 rounded-2xl z-50'>
+        <div className='xl:hidden fixed top-16 left-4 right-4 glass-strong p-6 rounded-2xl z-50'>
           <ul className='flex flex-col gap-4'>
             {navLinks.map((nav) => (
               <li key={nav.id}>

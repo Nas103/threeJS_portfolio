@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { RibbonGlow } from "./canvas/index.js";
+import { WavesBg, CanvasErrorBoundary, KeepAlive } from "./canvas/index.js";
 import { stats } from "../constants/index.js";
 
 const heroChips = [
@@ -17,19 +17,21 @@ const Hero = () => {
 
   return (
     <section className='relative w-full min-h-screen overflow-hidden'>
-      {/* Header background — Ribbon Glow */}
-      <div className='absolute inset-0'>
-        <RibbonGlow
-          background='#05060f'
-          color1='#8b5cf6'
-          color2='#22d3ee'
-          speed={50}
-          size={100}
-          angle={-180}
-          hover={100}
-          reach={260}
-        />
-      </div>
+      {/* Header background — WebGL waves */}
+      <KeepAlive
+        className='absolute inset-0'
+        placeholder={
+          <div className='absolute inset-0 bg-gradient-to-br from-[#0b0a1f] via-[#05060f] to-black' />
+        }
+      >
+        <CanvasErrorBoundary
+          fallback={
+            <div className='absolute inset-0 bg-gradient-to-br from-[#0b0a1f] via-[#05060f] to-black' />
+          }
+        >
+          <WavesBg xScale={1.0} yScale={0.5} distortion={0.05} speed={1} />
+        </CanvasErrorBoundary>
+      </KeepAlive>
 
       {/* readability + texture overlays */}
       <div className='absolute inset-0 bg-gradient-to-r from-[#05060f]/90 via-[#05060f]/35 to-transparent pointer-events-none' />
@@ -106,6 +108,23 @@ const Hero = () => {
             >
               Contact Me
             </button>
+            <a
+              href={`${import.meta.env.BASE_URL}Rhulani_Mashala_CV.pdf`}
+              download='Rhulani_Mashala_CV.pdf'
+              className='btn-outline text-white font-semibold px-8 py-3.5 rounded-full flex items-center gap-2'
+            >
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                className='w-[18px] h-[18px]'
+                viewBox='0 0 24 24'
+                fill='none'
+                stroke='currentColor'
+                strokeWidth={2}
+              >
+                <path strokeLinecap='round' strokeLinejoin='round' d='M12 4v12m0 0l-4-4m4 4l4-4M5 20h14' />
+              </svg>
+              Download CV
+            </a>
           </motion.div>
 
           <motion.div

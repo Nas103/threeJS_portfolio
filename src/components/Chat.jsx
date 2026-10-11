@@ -69,8 +69,9 @@ const Chat = ({ isOpen, onClose }) => {
       },
     ],
     projects: [
-      "Lily-s — AI-powered retail web application with an embedded mobile app.",
+      "NaSO — AI-powered retail web application with an embedded mobile app.",
       "INTELIG-AI — large AI / SaaS application project.",
+      "Investment Intel — AI-powered investment intelligence platform.",
       "AI-Coding-Tutor — Python AI-focused coding project.",
       "Xora AI app — AI SaaS application for everyday automation.",
       "Dragon Compeller — fantasy RPG game in JavaScript.",

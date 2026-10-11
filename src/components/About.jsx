@@ -1,28 +1,38 @@
-import { Tilt } from "react-tilt";
 import { motion } from "framer-motion";
+
 import { styles } from "../styles.js";
 import { services, stats } from "../constants/index.js";
 import { SectionWrapper } from "../hoc/index.js";
 import { fadeIn, textVariant } from "../utils/motion.js";
+import TiltPop from "./TiltPop.jsx";
 
 const ServiceCard = ({ index, title, icon, description }) => (
-  <motion.div variants={fadeIn("up", "spring", index * 0.3, 0.7)}>
-    <Tilt
-      options={{ max: 14, scale: 1.02, speed: 600 }}
-      className='h-full'
-    >
-      <div className='w-full h-full glass rounded-2xl p-6 flex flex-col items-center text-center transition-colors duration-300 hover:border-violet-400/40'>
-        <div className='w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-500/25 to-fuchsia-500/25 flex items-center justify-center mb-4'>
+  <motion.div
+    variants={fadeIn("up", "spring", index * 0.2, 0.6)}
+    className='h-full [perspective:1200px]'
+  >
+    <TiltPop>
+      <div className='h-full glass rounded-2xl p-6 flex flex-col items-center text-center transition-colors duration-300 hover:border-violet-400/40'>
+        <div
+          className='w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-500/25 to-fuchsia-500/25 flex items-center justify-center mb-4'
+          style={{ transform: "translateZ(34px)" }}
+        >
           <img src={icon} alt={title} className='w-9 h-9 object-contain' />
         </div>
-        <h3 className='font-display text-white text-[18px] font-semibold mb-2'>
+        <h3
+          className='font-display text-white text-[18px] font-semibold mb-2'
+          style={{ transform: "translateZ(26px)" }}
+        >
           {title}
         </h3>
-        <p className='text-[13.5px] text-secondary leading-relaxed'>
+        <p
+          className='text-[13.5px] text-secondary leading-relaxed'
+          style={{ transform: "translateZ(18px)" }}
+        >
           {description}
         </p>
       </div>
-    </Tilt>
+    </TiltPop>
   </motion.div>
 );
 
@@ -69,7 +79,7 @@ const About = () => {
         </motion.p>
 
         <motion.div variants={fadeIn("left", "spring", 0.2, 0.8)}>
-          <div className='glass gradient-border rounded-2xl p-7 h-full'>
+          <div className='glass gradient-border rounded-2xl p-7 h-full flex flex-col'>
             <p className='text-[11px] uppercase tracking-[0.25em] text-secondary mb-6'>
               Snapshot
             </p>
@@ -86,17 +96,36 @@ const About = () => {
                 </div>
               ))}
             </div>
-            <button
-              onClick={() => scrollTo("certifications")}
-              className='btn-outline mt-6 w-full text-white font-medium py-3 rounded-xl'
-            >
-              View Credentials
-            </button>
+            <div className='mt-auto pt-6 flex flex-col gap-3'>
+              <a
+                href={`${import.meta.env.BASE_URL}Rhulani_Mashala_CV.pdf`}
+                download='Rhulani_Mashala_CV.pdf'
+                className='btn-gradient text-white font-medium py-3 rounded-xl flex items-center justify-center gap-2'
+              >
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  className='w-[18px] h-[18px]'
+                  viewBox='0 0 24 24'
+                  fill='none'
+                  stroke='currentColor'
+                  strokeWidth={2}
+                >
+                  <path strokeLinecap='round' strokeLinejoin='round' d='M12 4v12m0 0l-4-4m4 4l4-4M5 20h14' />
+                </svg>
+                Download CV
+              </a>
+              <button
+                onClick={() => scrollTo("certifications")}
+                className='btn-outline w-full text-white font-medium py-3 rounded-xl'
+              >
+                View Credentials
+              </button>
+            </div>
           </div>
         </motion.div>
       </div>
 
-      <div className='mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5'>
+      <div id='services' className='grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-14'>
         {services.map((service, index) => (
           <ServiceCard key={service.title} index={index} {...service} />
         ))}

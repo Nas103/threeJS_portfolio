@@ -37,9 +37,10 @@ import jobit from "./jobit.png";
 import tripguide from "./tripguide.png";
 import xora from "./xora.png";
 import rpg_game from "./rpg_game.jpeg";
-import intelligai from "./InteliGAI.png";
+import intelAi from "./intel-ai.png";
+import investmentIntel from "./inte-support.png";
 
-import lily from "./projects/lily.svg";
+import NaSO from "./NaSO.png";
 import aiCoder from "./projects/ai-coder.svg";
 import portfolioPreview from "./projects/portfolio.svg";
 
@@ -80,8 +81,9 @@ export {
   tripguide,
   xora,
   rpg_game,
-  intelligai,
-  lily,
+  intelAi,
+  investmentIntel,
+  NaSO,
   aiCoder,
   portfolioPreview,
 };
