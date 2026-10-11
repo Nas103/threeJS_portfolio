@@ -20,27 +20,28 @@ import redux from "./tech/redux.png";
 import tailwind from "./tech/tailwind.png";
 import typescript from "./tech/typescript.png";
 import threejs from "./tech/threejs.svg";
+import python from "./tech/python.png";
+import nextjs from "./tech/nextjs.svg";
+import sql from "./tech/sql.svg";
+import shell from "./tech/shell.svg";
 
 import meta from "./company/meta.png";
 import shopify from "./company/shopify.png";
 import starbucks from "./company/starbucks.png";
 import tesla from "./company/tesla.png";
 import alx from "./company/alx.png";
-import allied from "./company/allied.png";
 import ibm from "./company/ibm.png";
-import skillup from "./company/skillup.png";
-import free from "./company/free.png";
 
 import carrent from "./carrent.png";
 import jobit from "./jobit.png";
 import tripguide from "./tripguide.png";
-import calorie from "./calorie.jpeg";
 import xora from "./xora.png";
-import rpg from "./rpg.jpeg";
-import calorie_app from "./calorie_app.jpeg";
 import rpg_game from "./rpg_game.jpeg";
-import python from "./tech/python.png";
 import intelligai from "./InteliGAI.png";
+
+import lily from "./projects/lily.svg";
+import aiCoder from "./projects/ai-coder.svg";
+import portfolioPreview from "./projects/portfolio.svg";
 
 export {
   logo,
@@ -64,23 +65,23 @@ export {
   tailwind,
   typescript,
   threejs,
+  python,
+  nextjs,
+  sql,
+  shell,
   meta,
   shopify,
   starbucks,
   tesla,
   alx,
-  allied,
   ibm,
-  skillup,
-  free,
   carrent,
   jobit,
   tripguide,
-  calorie,
   xora,
-  rpg,
-  calorie_app,
   rpg_game,
-  python,
   intelligai,
+  lily,
+  aiCoder,
+  portfolioPreview,
 };

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#150b2e"/>
+      <stop offset="0.5" stop-color="#2a1050"/>
+      <stop offset="1" stop-color="#0f3460"/>
+    </linearGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#a78bfa"/>
+      <stop offset="1" stop-color="#f5af19"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.7" cy="0.25" r="0.55">
+      <stop offset="0" stop-color="#8b5cf6" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="460" fill="url(#bg)"/>
+  <circle cx="580" cy="110" r="230" fill="url(#glow)"/>
+  <g stroke="#ffffff" stroke-opacity="0.05" stroke-width="1">
+    <line x1="0" y1="115" x2="800" y2="115"/>
+    <line x1="0" y1="230" x2="800" y2="230"/>
+    <line x1="0" y1="345" x2="800" y2="345"/>
+    <line x1="200" y1="0" x2="200" y2="460"/>
+    <line x1="400" y1="0" x2="400" y2="460"/>
+    <line x1="600" y1="0" x2="600" y2="460"/>
+  </g>
+  <g transform="translate(70 92)">
+    <polygon points="20,4 34,18 20,32 6,18" fill="none" stroke="url(#acc)" stroke-width="3" stroke-linejoin="round"/>
+    <polygon points="20,14 27,21 20,28 13,21" fill="#8b5cf6"/>
+  </g>
+  <text x="74" y="78" font-family="monospace" font-size="28" fill="#a78bfa">ai-coding-tutor</text>
+  <text x="70" y="320" font-family="sans-serif" font-size="52" font-weight="700" fill="#ffffff">Learn to Code</text>
+  <text x="70" y="372" font-family="sans-serif" font-size="52" font-weight="700" fill="#f5af19">with an AI Tutor</text>
+  <rect x="70" y="405" width="150" height="10" rx="5" fill="url(#acc)"/>
+  <rect x="500" y="210" width="150" height="96" rx="12" fill="#05060f" fill-opacity="0.8" stroke="#8b5cf6" stroke-opacity="0.5" stroke-width="2"/>
+  <text x="525" y="247" font-family="monospace" font-size="18" fill="#38ef7d">def gradient():</text>
+  <text x="525" y="277" font-family="monospace" font-size="18" fill="#e879f9">    return "AI"</text>
+  <circle cx="528" cy="226" r="4" fill="#f87171"/>
+  <circle cx="542" cy="226" r="4" fill="#fbbf24"/>
+  <circle cx="556" cy="226" r="4" fill="#34d399"/>
+</svg>

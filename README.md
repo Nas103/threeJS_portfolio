@@ -1,65 +1,77 @@
-Three.js Portfolio
+# Rhulani Mashala — Portfolio
 
-This is an interactive 3D portfolio website built using Three.js, showcasing my projects, skills, and experience in software development and AI engineering.
+An interactive 3D portfolio for **Rhulani Mashala**, a Software Engineer & AI Engineer. It pairs React Three Fiber scenes with full-bleed WebGL shader backgrounds, animated sections, and a small AI assistant.
 
-Features
+Live demo: https://nas103.github.io/threeJS_portfolio/
 
-3D Animated Background with smooth transitions and interactive elements
+## Features
 
-Dynamic Project Showcase with clickable 3D cards
+- **Hero** with a full-bleed WebGL **Ribbon Glow** background (framer-motion entrance).
+- **Projects** section backed by its own Ribbon Glow shader, with tilted 3D cards.
+- **3D scenes** via React Three Fiber + Drei (desktop computer model, planet, tech balls, stars).
+- **Graceful WebGL fallback** — every canvas is wrapped in an error boundary, so devices without WebGL get static fallbacks instead of a blank page.
+- **AI Assistant** chat widget (CV knowledge base + speech input/output) mounted globally.
+- **Contact** form powered by EmailJS.
+- Responsive layout, glassmorphism design tokens, custom Tailwind animations.
 
-Responsive Design optimized for desktop and mobile
+## Tech Stack
 
-Customizable Themes for light and dark modes
+- **React 18** + **Vite 6**
+- **@react-three/fiber** / **@react-three/drei** — 3D scenes and GLTF models
+- **framer-motion** — scroll and entrance animations
+- **Tailwind CSS** — design system and theming
+- **react-tilt**, **react-vertical-timeline-component** — project cards and experience timeline
+- **@emailjs/browser** — contact form delivery
+- **gh-pages** — deployment
 
-Optimized Performance using efficient rendering techniques
+## Getting Started
 
-
-Live Demo
-
-View Portfolio
-
-Technologies Used
-
-Three.js – 3D graphics and animations
-
-JavaScript (ES6+) – Interactive functionality
-
-HTML5 & CSS3 – UI and styling
-
-GLTF Models – 3D assets and objects
-
-GSAP – Smooth animations
-
-
-Installation & Setup
-
-1. Clone the repository
-
+```bash
 git clone https://github.com/Nas103/threeJS_portfolio.git
 cd threeJS_portfolio
-
-
-2. Open in a browser
-
-If using a local server, run:
-
 npm install
-npm start
+npm run dev
+```
 
-Or simply open index.html in your browser.
+Then open the printed URL (defaults to `http://localhost:5173/threeJS_portfolio/`).
 
+### Scripts
 
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the Vite dev server |
+| `npm run build` | Production build to `dist/` |
+| `npm run preview` | Preview the production build |
+| `npm run lint` | Run ESLint |
+| `npm run deploy` | Build and publish to GitHub Pages |
 
+## Configuration
 
-Customization
+Copy `.env` values for the contact form (EmailJS):
 
-Modify models/ for different 3D assets
+```
+VITE_APP_EMAILJS_SERVICE_ID=...
+VITE_APP_EMAILJS_TEMPLATE_ID=...
+VITE_APP_EMAILJS_PUBLIC_KEY=...
+```
 
-Edit scripts/animations.js for animation tweaks
+## Project Structure
 
-Adjust colors and themes in styles.css
+```
+src/
+├── assets/            # icons, tech logos, project thumbnails
+├── components/        # page sections (Hero, Works, Contact, ...)
+│   └── canvas/        # React Three Fiber scenes + RibbonGlow (WebGL)
+├── constants/         # CV data: projects, experience, education, nav, ...
+├── hoc/               # section wrapper
+├── utils/             # framer-motion variants
+├── styles.js          # shared Tailwind class strings
+└── App.jsx            # page assembly
+```
 
-Author
+## Author
 
-Rhulani Mashala
+**Rhulani Mashala**
+
+- GitHub: https://github.com/Nas103
+- Email: nascode.dev@gmail.com

@@ -1,167 +1,143 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-
-import { styles } from "../styles.js";
+import { useEffect, useState } from "react";
 import { navLinks } from "../constants/index.js";
-import { logo, menu, close } from "../assets";
-import { Chat } from "./index.js";
+import { menu, close } from "../assets";
 
-const Navbar = () => {
-  const [active, setActive] = useState("");
-  const [toggle, setToggle] = useState(false);
+const Navbar = ({ onOpenChat }) => {
   const [scrolled, setScrolled] = useState(false);
-  const [chatOpen, setChatOpen] = useState(false);
+  const [toggle, setToggle] = useState(false);
+  const [active, setActive] = useState("");
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      if (scrollTop > 100) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const handleClick = (e, id) => {
-    e.preventDefault();
-    
-    if (id === "chat") {
-      setChatOpen(true);
-      return;
-    }
-    
-    const element = document.getElementById(id);
-    element?.scrollIntoView({ behavior: "smooth" });
-  };
+  useEffect(() => {
+    const sections = ["about", "skills", "experience", "projects", "certifications", "contact"];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(entry.target.id);
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px" }
+    );
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
 
-  const toggleChat = () => {
-    setChatOpen(!chatOpen);
+  const goTo = (id) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <>
       <nav
-        className={`${
-          styles.paddingX
-        } w-full flex items-center py-5 fixed top-0 z-20 ${
-          scrolled ? "bg-primary" : "bg-transparent"
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+          scrolled ? "glass-strong py-3 shadow-xl" : "bg-transparent py-5"
         }`}
       >
-        <div className='w-full flex justify-between items-center max-w-7xl mx-auto'>
-          <Link
-            to='/'
-            className='flex items-center gap-2'
+        <div className='max-w-7xl mx-auto px-6 sm:px-10 flex items-center justify-between'>
+          <button
             onClick={() => {
               setActive("");
-              window.scrollTo(0, 0);
+              window.scrollTo({ top: 0, behavior: "smooth" });
             }}
+            className='flex items-center gap-3'
           >
-            <img src={logo} alt='logo' className='w-9 h-9 object-contain rounded-full' />
-            <p className='text-white text-[18px] font-bold cursor-pointer flex '>
-              Rhulani &nbsp;
-              <span className='sm:block hidden'>Mashala</span>
-            </p>
-          </Link>
+            <div className='w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 via-fuchsia-500 to-cyan-400 flex items-center justify-center font-display font-bold text-white text-lg shadow-glow'>
+              R
+            </div>
+            <div className='text-left leading-tight'>
+              <p className='text-white text-[16px] font-bold font-display tracking-wide'>
+                Rhulani Mashala
+              </p>
+              <p className='text-[10.5px] text-secondary uppercase tracking-[0.22em]'>
+                Software · AI Engineer
+              </p>
+            </div>
+          </button>
 
-          <ul className='list-none hidden sm:flex flex-row gap-10'>
+          <ul className='hidden lg:flex items-center gap-7'>
             {navLinks.map((nav) => (
-              <li
-                key={nav.id}
-                className={`${
-                  active === nav.title ? "text-white" : "text-secondary"
-                } hover:text-white text-[18px] font-medium cursor-pointer`}
-                onClick={() => {
-                  setActive(nav.title);
-                  if (nav.id === "chat") {
-                    toggleChat();
-                  }
-                }}
-              >
-                {nav.id === "chat" ? (
-                  <button onClick={toggleChat}>{nav.title}</button>
-                ) : (
-                  <a href={`#${nav.id}`}>{nav.title}</a>
-                )}
+              <li key={nav.id}>
+                <button
+                  onClick={() => goTo(nav.id)}
+                  className={`text-[14.5px] font-medium transition-colors duration-200 ${
+                    active === nav.id
+                      ? "text-white"
+                      : "text-secondary hover:text-white"
+                  }`}
+                >
+                  {nav.title}
+                </button>
               </li>
             ))}
           </ul>
 
-          <div className='sm:hidden flex flex-1 justify-end items-center'>
-            <img
-              src={toggle ? close : menu}
-              alt='menu'
-              className='w-[28px] h-[28px] object-contain'
-              onClick={() => setToggle(!toggle)}
-            />
-
-            <div
-              className={`${
-                !toggle ? "hidden" : "flex"
-              } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl`}
+          <div className='hidden lg:flex items-center gap-3'>
+            <button
+              onClick={onOpenChat}
+              className='btn-outline text-white text-[14px] font-medium px-5 py-2 rounded-full flex items-center gap-2'
             >
-              <ul className='list-none flex justify-end items-start flex-1 flex-col gap-4'>
-                {navLinks.map((nav) => (
-                  <li
-                    key={nav.id}
-                    className={`font-poppins font-medium cursor-pointer text-[16px] ${
-                      active === nav.title ? "text-white" : "text-secondary"
-                    }`}
-                    onClick={() => {
-                      setToggle(!toggle);
-                      setActive(nav.title);
-                      if (nav.id === "chat") {
-                        toggleChat();
-                      }
-                    }}
-                  >
-                    {nav.id === "chat" ? (
-                      <button>{nav.title}</button>
-                    ) : (
-                      <a 
-                        href={`#${nav.id}`}
-                        onClick={(e) => handleClick(e, nav.id)}
-                      >
-                        {nav.title}
-                      </a>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
+              <span className='h-2 w-2 rounded-full bg-emerald-400 animate-pulse' />
+              AI Assistant
+            </button>
+            <button
+              onClick={() => goTo("contact")}
+              className='btn-gradient text-white text-[14px] font-medium px-5 py-2 rounded-full'
+            >
+              Let's Talk
+            </button>
           </div>
+
+          <button
+            onClick={() => setToggle(!toggle)}
+            className='lg:hidden text-white p-2'
+            aria-label='Toggle menu'
+          >
+            <img src={toggle ? close : menu} alt='menu' className='w-7 h-7 object-contain' />
+          </button>
         </div>
       </nav>
-      
-      {/* Floating chat button for mobile */}
-      <div className="fixed bottom-4 right-4 z-50 sm:hidden">
-        <button 
-          onClick={toggleChat}
-          className="bg-violet-600 hover:bg-violet-700 text-white rounded-full p-3 shadow-lg"
-        >
-          <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            className="h-6 w-6" 
-            fill="none" 
-            viewBox="0 0 24 24" 
-            stroke="currentColor"
-          >
-            <path 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              strokeWidth={2} 
-              d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" 
-            />
-          </svg>
-        </button>
-      </div>
-      
-      {/* Chat component */}
-      <Chat isOpen={chatOpen} onClose={() => setChatOpen(false)} />
+
+      {toggle && (
+        <div className='lg:hidden fixed top-16 left-4 right-4 glass-strong p-6 rounded-2xl z-50'>
+          <ul className='flex flex-col gap-4'>
+            {navLinks.map((nav) => (
+              <li key={nav.id}>
+                <button
+                  onClick={() => {
+                    setToggle(false);
+                    goTo(nav.id);
+                  }}
+                  className={`text-[16px] font-medium ${
+                    active === nav.id ? "text-white" : "text-secondary"
+                  }`}
+                >
+                  {nav.title}
+                </button>
+              </li>
+            ))}
+            <li>
+              <button
+                onClick={() => {
+                  setToggle(false);
+                  onOpenChat();
+                }}
+                className='btn-gradient w-full text-white font-medium py-2.5 rounded-xl'
+              >
+                Ask the AI Assistant
+              </button>
+            </li>
+          </ul>
+        </div>
+      )}
     </>
   );
 };

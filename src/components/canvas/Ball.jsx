@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import {
   Decal,
@@ -9,6 +9,7 @@ import {
 } from "@react-three/drei";
 
 import CanvasLoader from "../Loader.jsx";
+import CanvasErrorBoundary from "./CanvasErrorBoundary.jsx";
 
 const Ball = (props) => {
   const [decal] = useTexture([props.imgUrl]);
@@ -47,23 +48,35 @@ const Ball = (props) => {
 
 const BallCanvas = ({ icon }) => {
   return (
-    <Canvas
-      frameloop='demand'
-      dpr={[1, 2]}
-      gl={{ preserveDrawingBuffer: true }}
+    <CanvasErrorBoundary
+      fallback={
+        <div className='w-full h-full flex items-center justify-center'>
+          <img
+            src={icon}
+            alt='tech'
+            className='w-2/3 h-2/3 object-contain drop-shadow-[0_0_18px_rgba(139,92,246,0.45)]'
+          />
+        </div>
+      }
     >
-      <Suspense fallback={<CanvasLoader />}>
-        <OrbitControls 
-          enableZoom={false}
-          enablePan={false}
-          minPolarAngle={Math.PI / 2}
-          maxPolarAngle={Math.PI / 2}
-        />
-        <Ball imgUrl={icon} />
-      </Suspense>
+      <Canvas
+        frameloop='demand'
+        dpr={[1, 2]}
+        gl={{ preserveDrawingBuffer: true }}
+      >
+        <Suspense fallback={<CanvasLoader />}>
+          <OrbitControls 
+            enableZoom={false}
+            enablePan={false}
+            minPolarAngle={Math.PI / 2}
+            maxPolarAngle={Math.PI / 2}
+          />
+          <Ball imgUrl={icon} />
+        </Suspense>
 
-      <Preload all />
-    </Canvas>
+        <Preload all />
+      </Canvas>
+    </CanvasErrorBoundary>
   );
 };
 

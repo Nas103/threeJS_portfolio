@@ -1,8 +1,9 @@
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 
 import CanvasLoader from "../Loader.jsx";
+import CanvasErrorBoundary from "./CanvasErrorBoundary.jsx";
 
 const Earth = () => {
   const earth = useGLTF("./planet/scene.gltf");
@@ -14,30 +15,38 @@ const Earth = () => {
 
 const EarthCanvas = () => {
   return (
-    <Canvas
-      shadows
-      frameloop='demand'
-      dpr={[1, 2]}
-      gl={{ preserveDrawingBuffer: true }}
-      camera={{
-        fov: 45,
-        near: 0.1,
-        far: 200,
-        position: [-4, 3, 6],
-      }}
+    <CanvasErrorBoundary
+      fallback={
+        <div className='w-full h-full flex items-center justify-center'>
+          <div className='w-56 h-56 rounded-full bg-gradient-to-br from-violet-600 via-fuchsia-500 to-cyan-400 shadow-2xl shadow-violet-500/30' />
+        </div>
+      }
     >
-      <Suspense fallback={<CanvasLoader />}>
-        <OrbitControls
-          autoRotate
-          enableZoom={false}
-          maxPolarAngle={Math.PI / 2}
-          minPolarAngle={Math.PI / 2}
-        />
-        <Earth />
+      <Canvas
+        shadows
+        frameloop='demand'
+        dpr={[1, 2]}
+        gl={{ preserveDrawingBuffer: true }}
+        camera={{
+          fov: 45,
+          near: 0.1,
+          far: 200,
+          position: [-4, 3, 6],
+        }}
+      >
+        <Suspense fallback={<CanvasLoader />}>
+          <OrbitControls
+            autoRotate
+            enableZoom={false}
+            maxPolarAngle={Math.PI / 2}
+            minPolarAngle={Math.PI / 2}
+          />
+          <Earth />
 
-        <Preload all />
-      </Suspense>
-    </Canvas>
+          <Preload all />
+        </Suspense>
+      </Canvas>
+    </CanvasErrorBoundary>
   );
 };
 

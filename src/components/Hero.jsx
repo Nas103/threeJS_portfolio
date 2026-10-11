@@ -1,48 +1,129 @@
 import { motion } from "framer-motion";
+import { RibbonGlow } from "./canvas/index.js";
+import { stats } from "../constants/index.js";
 
-import { styles } from "../styles.js";
-import { ComputersCanvas } from "./canvas/index.js";
+const heroChips = [
+  "AI Voice Agents",
+  "Python",
+  "React / Next.js",
+  "Node.js",
+  "Machine Learning",
+];
 
 const Hero = () => {
-  return (
-    <section className={`relative w-full h-screen mx-auto`}>
-      <div
-        className={`absolute inset-0 top-[120px]  max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}
-      >
-        <div className='flex flex-col justify-center items-center mt-5'>
-          <div className='w-5 h-5 rounded-full bg-[#915EFF]' />
-          <div className='w-1 sm:h-80 h-40 violet-gradient' />
-        </div>
+  const scrollTo = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
 
-        <div class="heading-section">
-          <h1 className={`${styles.heroHeadText} text-white`}>
-            Hi, I'm <span className='orange-gradient-text'>Rhulani</span>
-          </h1>
-          <p className={`${styles.heroSubText} mt-2 mb-4 bg-gradient-to-l text-[4rem]`}>
-            I'm an AI Engineer | Developer, <br className='sm:block hidden' />
-            i create intelligent solutions for real-world challenges.
-          </p>
-        </div>
+  return (
+    <section className='relative w-full min-h-screen overflow-hidden'>
+      {/* Header background — Ribbon Glow */}
+      <div className='absolute inset-0'>
+        <RibbonGlow
+          background='#05060f'
+          color1='#8b5cf6'
+          color2='#22d3ee'
+          speed={50}
+          size={100}
+          angle={-180}
+          hover={100}
+          reach={260}
+        />
       </div>
 
-      <ComputersCanvas />
+      {/* readability + texture overlays */}
+      <div className='absolute inset-0 bg-gradient-to-r from-[#05060f]/90 via-[#05060f]/35 to-transparent pointer-events-none' />
+      <div className='absolute inset-0 bg-grid opacity-30 pointer-events-none' />
 
-      <div className='absolute mt-5 xs:bottom-10 bottom-32 w-full flex justify-center items-center'>
-        <a href='#about'>
-          <div className='w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2'>
-            <motion.div
-              animate={{
-                y: [0, 24, 0],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                repeatType: "loop",
-              }}
-              className='w-3 h-3 rounded-full bg-secondary mb-1'
-            />
-          </div>
-        </a>
+      <div className='relative z-10 max-w-7xl mx-auto px-6 sm:px-10 pt-28 lg:pt-32 pb-16 flex items-center min-h-screen'>
+        <div className='max-w-3xl'>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className='inline-flex items-center gap-2 glass rounded-full px-4 py-1.5 mb-6'
+          >
+            <span className='h-2.5 w-2.5 rounded-full bg-emerald-400 animate-pulse' />
+            <span className='text-[13px] text-[#c9c4e8]'>
+              Open to Remote / Hybrid roles
+            </span>
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className='font-display font-bold text-white text-[42px] xs:text-[56px] md:text-[68px] leading-[1.05] [text-shadow:0_4px_40px_rgba(5,6,15,0.85)]'
+          >
+            Hi, I'm{" "}
+            <span className='text-gradient-shine'>Rhulani</span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className='mt-5 text-[18px] md:text-[22px] text-secondary leading-relaxed max-w-xl [text-shadow:0_2px_24px_rgba(5,6,15,0.9)]'
+          >
+            Software Engineer &amp; AI Engineer — I build{" "}
+            <span className='text-white'>AI voice agents</span>, full-stack
+            applications and{" "}
+            <span className='text-white'>immersive 3D experiences</span> that
+            solve real-world problems.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className='mt-6 flex flex-wrap gap-2'
+          >
+            {heroChips.map((chip) => (
+              <span
+                key={chip}
+                className='text-[13px] font-medium px-3.5 py-1.5 rounded-full glass text-[#d5d0ee]'
+              >
+                {chip}
+              </span>
+            ))}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className='mt-8 flex flex-wrap items-center gap-4'
+          >
+            <button
+              onClick={() => scrollTo("projects")}
+              className='btn-gradient text-white font-semibold px-8 py-3.5 rounded-full'
+            >
+              View Projects
+            </button>
+            <button
+              onClick={() => scrollTo("contact")}
+              className='btn-outline text-white font-semibold px-8 py-3.5 rounded-full'
+            >
+              Contact Me
+            </button>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className='mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-xl'
+          >
+            {stats.map((stat) => (
+              <div key={stat.label}>
+                <p className='font-display font-bold text-[30px] leading-none bg-gradient-to-br from-white to-[#a78bfa] bg-clip-text text-transparent'>
+                  {stat.value}
+                </p>
+                <p className='mt-1.5 text-[12px] text-secondary'>{stat.label}</p>
+              </div>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </section>
   );

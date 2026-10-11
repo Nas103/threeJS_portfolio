@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#15083a"/>
+      <stop offset="0.55" stop-color="#2b1156"/>
+      <stop offset="1" stop-color="#450a3d"/>
+    </linearGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#a78bfa"/>
+      <stop offset="1" stop-color="#e879f9"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.4" r="0.6">
+      <stop offset="0" stop-color="#e879f9" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#e879f9" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="460" fill="url(#bg)"/>
+  <circle cx="620" cy="120" r="220" fill="url(#glow)"/>
+  <g stroke="#ffffff" stroke-opacity="0.05" stroke-width="1">
+    <line x1="0" y1="115" x2="800" y2="115"/>
+    <line x1="0" y1="230" x2="800" y2="230"/>
+    <line x1="0" y1="345" x2="800" y2="345"/>
+    <line x1="200" y1="0" x2="200" y2="460"/>
+    <line x1="400" y1="0" x2="400" y2="460"/>
+    <line x1="600" y1="0" x2="600" y2="460"/>
+  </g>
+  <g transform="translate(70 95)">
+    <rect x="0" y="0" width="34" height="40" rx="6" fill="none" stroke="url(#acc)" stroke-width="3"/>
+    <path d="M8 28h18M8 20h18M8 12h18" stroke="url(#acc)" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  <text x="72" y="80" font-family="monospace" font-size="30" fill="#a78bfa">lily-s</text>
+  <text x="70" y="320" font-family="sans-serif" font-size="52" font-weight="700" fill="#ffffff">AI-Powered</text>
+  <text x="70" y="372" font-family="sans-serif" font-size="52" font-weight="700" fill="url(#acc)">Retail Experience</text>
+  <rect x="70" y="405" width="150" height="10" rx="5" fill="url(#acc)"/>
+  <circle cx="560" cy="250" r="8" fill="#e879f9" opacity="0.9"/>
+  <circle cx="600" cy="205" r="5" fill="#a78bfa" opacity="0.8"/>
+  <circle cx="630" cy="270" r="6" fill="#60a5fa" opacity="0.7"/>
+  <circle cx="520" cy="305" r="4" fill="#e879f9" opacity="0.6"/>
+</svg>
