@@ -8,13 +8,13 @@ import "react-vertical-timeline-component/style.min.css";
 
 import { styles } from "../styles.js";
 import { experiences } from "../constants/index.js";
-import { SectionWrapper } from "../hoc/index.js";
-import { textVariant } from "../utils/motion.js";
+import { AuroraFlow, KeepAlive, CanvasErrorBoundary } from "./canvas/index.js";
+import { textVariant, staggerContainer } from "../utils/motion.js";
 
 const ExperienceCard = ({ experience }) => (
   <VerticalTimelineElement
     contentStyle={{
-      background: "rgba(13, 15, 34, 0.85)",
+      background: "rgba(13, 15, 34, 0.72)",
       color: "#fff",
       border: "1px solid rgba(255,255,255,0.08)",
       boxShadow: "0 20px 60px -24px rgba(0,0,0,0.7)",
@@ -26,7 +26,7 @@ const ExperienceCard = ({ experience }) => (
     dateClassName='text-[#c9c4e8] font-medium'
     iconStyle={{
       background: `linear-gradient(135deg, ${experience.iconBg}, #05060f)`,
-      boxShadow: "0 0 0 5px rgba(167,139,250,0.18)",
+      boxShadow: "0 0 0 5px rgba(167,139,250,0.18), 0 0 28px rgba(123,97,255,0.45)",
     }}
     icon={
       <div className='flex justify-center items-center w-full h-full text-white font-display font-bold text-xl'>
@@ -54,24 +54,61 @@ const ExperienceCard = ({ experience }) => (
 );
 
 const Experience = () => (
-  <>
-    <motion.div variants={textVariant()}>
-      <p className={`${styles.sectionSubText} text-center`}>
-        <span className='text-gradient font-semibold'>//</span> My journey
-      </p>
-      <h2 className={`${styles.sectionHeadText} text-center`}>
-        Work <span className='text-gradient'>experience</span>.
-      </h2>
-    </motion.div>
+  <motion.section
+    variants={staggerContainer()}
+    initial='hidden'
+    whileInView='show'
+    viewport={{ once: true, amount: 0.1 }}
+    className='relative w-full overflow-hidden'
+  >
+    <KeepAlive
+      className='absolute inset-0'
+      placeholder={
+        <div className='absolute inset-0 bg-gradient-to-b from-[#0A0812] via-[#150f2e] to-[#0A0812]' />
+      }
+    >
+      <CanvasErrorBoundary
+        fallback={
+          <div className='absolute inset-0 bg-gradient-to-b from-[#0A0812] via-[#150f2e] to-[#0A0812]' />
+        }
+      >
+        <AuroraFlow
+          background='#0A0812'
+          color1='#7B61FF'
+          color2='#2FD3F2'
+          color3='#F062C8'
+          speed={1}
+          intensity={0.7}
+        />
+      </CanvasErrorBoundary>
+    </KeepAlive>
 
-    <div className='mt-16'>
-      <VerticalTimeline lineColor='rgba(167,139,250,0.25)'>
-        {experiences.map((experience, index) => (
-          <ExperienceCard key={`experience-${index}`} experience={experience} />
-        ))}
-      </VerticalTimeline>
+    <div className='absolute inset-0 bg-gradient-to-b from-[#05060f] via-transparent to-[#05060f] pointer-events-none' />
+    <div className='absolute inset-0 bg-grid opacity-10 pointer-events-none' />
+
+    <div className={`${styles.padding} max-w-7xl mx-auto relative z-10`}>
+      <span className='hash-span' id='experience'>
+        &nbsp;
+      </span>
+
+      <motion.div variants={textVariant()} className='text-center'>
+        <p className={`${styles.sectionSubText} text-center`}>
+          <span className='text-gradient font-semibold'>//</span> My journey
+        </p>
+        <h2 className={`${styles.sectionHeadText} text-center`}>
+          Work <span className='text-gradient'>experience</span>.
+        </h2>
+      </motion.div>
+
+      <div className='mt-16'>
+        <VerticalTimeline lineColor='rgba(167,139,250,0.25)'>
+          {experiences.map((experience, index) => (
+            <ExperienceCard key={`experience-${index}`} experience={experience} />
+          ))}
+        </VerticalTimeline>
+      </div>
     </div>
-  </>
+  </motion.section>
 );
 
-export default SectionWrapper(Experience, "experience");
+export default Experience;

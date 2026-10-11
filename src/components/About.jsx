@@ -97,23 +97,6 @@ const About = () => {
               ))}
             </div>
             <div className='mt-auto pt-6 flex flex-col gap-3'>
-              <a
-                href={`${import.meta.env.BASE_URL}Rhulani_Mashala_CV.pdf`}
-                download='Rhulani_Mashala_CV.pdf'
-                className='btn-gradient text-white font-medium py-3 rounded-xl flex items-center justify-center gap-2'
-              >
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  className='w-[18px] h-[18px]'
-                  viewBox='0 0 24 24'
-                  fill='none'
-                  stroke='currentColor'
-                  strokeWidth={2}
-                >
-                  <path strokeLinecap='round' strokeLinejoin='round' d='M12 4v12m0 0l-4-4m4 4l4-4M5 20h14' />
-                </svg>
-                Download CV
-              </a>
               <button
                 onClick={() => scrollTo("certifications")}
                 className='btn-outline w-full text-white font-medium py-3 rounded-xl'
