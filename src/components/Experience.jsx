@@ -84,6 +84,8 @@ const Experience = () => (
     </KeepAlive>
 
     <div className='absolute inset-0 bg-gradient-to-b from-[#05060f] via-transparent to-[#05060f] pointer-events-none' />
+    <div className='absolute inset-y-0 left-0 w-24 sm:w-40 bg-gradient-to-r from-[#05060f] to-transparent pointer-events-none' />
+    <div className='absolute inset-y-0 right-0 w-24 sm:w-40 bg-gradient-to-l from-[#05060f] to-transparent pointer-events-none' />
     <div className='absolute inset-0 bg-grid opacity-10 pointer-events-none' />
 
     <div className={`${styles.padding} max-w-7xl mx-auto relative z-10`}>
