@@ -249,6 +249,12 @@ const certifications = [
 
 const education = [
   {
+    title: "MSc Computer Science",
+    organization: "Heriot-Watt University",
+    date: "Paused — finance",
+    description: "Postgraduate computer science study, currently paused due to a funding gap; aiming to resume.",
+  },
+  {
     title: "Software Engineering Bootcamp (Backend Specialization)",
     organization: "ALX / Holberton School",
     date: "Nov 2023 — Sep 2024",
