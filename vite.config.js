@@ -8,5 +8,5 @@ export default defineConfig({
   server: {
     host: true,
   },
-  base: '/threeJS_portfolio/',
+  base: process.env.VITE_BASE_PATH || '/',
 });
