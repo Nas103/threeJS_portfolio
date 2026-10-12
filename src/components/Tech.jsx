@@ -1,10 +1,21 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { Canvas } from "@react-three/fiber";
+import { View, Preload } from "@react-three/drei";
 import { motion } from "framer-motion";
-import { BallCanvas, KeepAlive } from "./canvas/index.js";
+import { BallModel } from "./canvas/Ball.jsx";
 import { SectionWrapper } from "../hoc/index.js";
 import { technologies } from "../constants/index.js";
 import { styles } from "../styles.js";
 import { textVariant } from "../utils/motion.js";
+
+const supportsWebGL = () => {
+  try {
+    const c = document.createElement("canvas");
+    return !!(c.getContext("webgl2") || c.getContext("webgl"));
+  } catch {
+    return false;
+  }
+};
 
 const codeExamples = [
   {
@@ -119,6 +130,23 @@ class IntentModel(nn.Module):
 const Tech = () => {
   const [codeIndex, setCodeIndex] = useState(0);
   const [typed, setTyped] = useState("");
+  const [orbsActive, setOrbsActive] = useState(false);
+  const [webglOk] = useState(supportsWebGL);
+  const gridRef = useRef(null);
+
+  useEffect(() => {
+    const el = gridRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      setOrbsActive(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => setOrbsActive(entry.isIntersecting),
+      { rootMargin: "150px 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const full = codeExamples[codeIndex].code;
@@ -178,7 +206,7 @@ const Tech = () => {
         </pre>
       </div>
 
-      <div className='mt-16'>
+      <div className='mt-16' ref={gridRef}>
         <div className='flex flex-row flex-wrap justify-center gap-6 max-w-7xl mx-auto'>
           {technologies.map((technology, index) => (
             <motion.div
@@ -189,20 +217,20 @@ const Tech = () => {
               transition={{ duration: 0.5, delay: (index % 7) * 0.08 }}
               className='w-28 h-28 sm:w-32 sm:h-32 flex flex-col items-center'
             >
-              <div className='w-full h-full'>
-                <KeepAlive
-                  placeholder={
-                    <div className='w-full h-full flex items-center justify-center'>
-                      <img
-                        src={technology.icon}
-                        alt={technology.name}
-                        className='w-2/3 h-2/3 object-contain drop-shadow-[0_0_18px_rgba(139,92,246,0.45)]'
-                      />
-                    </div>
-                  }
-                >
-                  <BallCanvas icon={technology.icon} />
-                </KeepAlive>
+              <div className='relative w-full h-full'>
+                {webglOk ? (
+                  <View className='w-full h-full'>
+                    <BallModel imgUrl={technology.icon} />
+                  </View>
+                ) : (
+                  <div className='w-full h-full flex items-center justify-center'>
+                    <img
+                      src={technology.icon}
+                      alt={technology.name}
+                      className='w-2/3 h-2/3 object-contain drop-shadow-[0_0_18px_rgba(139,92,246,0.45)]'
+                    />
+                  </div>
+                )}
               </div>
               <p className='text-white text-[12px] sm:text-[13px] mt-2 font-medium text-center'>
                 {technology.name}
@@ -211,6 +239,18 @@ const Tech = () => {
           ))}
         </div>
       </div>
+
+      {webglOk && (
+        <Canvas
+          className='!fixed !inset-0 !w-screen !h-screen pointer-events-none z-0'
+          gl={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
+          dpr={[1, 1.8]}
+          frameloop={orbsActive ? "always" : "never"}
+        >
+          <View.Port />
+          <Preload all />
+        </Canvas>
+      )}
     </>
   );
 };

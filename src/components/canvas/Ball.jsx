@@ -11,7 +11,7 @@ import {
 import CanvasLoader from "../Loader.jsx";
 import CanvasErrorBoundary from "./CanvasErrorBoundary.jsx";
 
-const Ball = (props) => {
+export const BallModel = (props) => {
   const [decal] = useTexture([props.imgUrl]);
 
   return (
@@ -71,7 +71,7 @@ const BallCanvas = ({ icon }) => {
             minPolarAngle={Math.PI / 2}
             maxPolarAngle={Math.PI / 2}
           />
-          <Ball imgUrl={icon} />
+          <BallModel imgUrl={icon} />
         </Suspense>
 
         <Preload all />
