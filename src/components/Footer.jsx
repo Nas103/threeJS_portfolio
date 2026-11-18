@@ -1,4 +1,5 @@
 import { navLinks } from "../constants/index.js";
+import BrandMark from "./BrandMark";
 
 const Footer = () => {
   const goTo = (id) => {
@@ -9,11 +10,9 @@ const Footer = () => {
     <footer className='relative mt-24 border-t border-white/5'>
       <div className='max-w-7xl mx-auto px-6 sm:px-10 py-12 flex flex-col md:flex-row items-center justify-between gap-8'>
         <div className='flex items-center gap-3'>
-          <div className='w-11 h-11 rounded-xl bg-gradient-to-br from-violet-500 via-fuchsia-500 to-cyan-400 flex items-center justify-center font-display font-bold text-white text-lg shadow-glow'>
-            R
-          </div>
+          <BrandMark className='brand-mark--footer' />
           <div>
-            <p className='text-white font-display font-bold text-[16px]'>
+            <p className='text-gradient-shine font-display font-bold text-[16px]'>
               Rhulani Mashala
             </p>
             <p className='text-secondary text-[12px]'>

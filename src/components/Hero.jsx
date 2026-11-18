@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { WavesBg, CanvasErrorBoundary, KeepAlive } from "./canvas/index.js";
 import { stats } from "../constants/index.js";
 
@@ -11,6 +11,7 @@ const heroChips = [
 ];
 
 const Hero = () => {
+  const reduceMotion = useReducedMotion();
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
@@ -40,19 +41,19 @@ const Hero = () => {
       <div className='relative z-10 max-w-7xl mx-auto px-6 sm:px-10 pt-28 lg:pt-32 pb-16 flex items-center min-h-screen'>
         <div className='max-w-3xl'>
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={reduceMotion ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className='inline-flex items-center gap-2 glass rounded-full px-4 py-1.5 mb-6'
           >
-            <span className='h-2.5 w-2.5 rounded-full bg-emerald-400 animate-pulse' />
+            <span className='h-2.5 w-2.5 rounded-full bg-emerald-400 animate-pulse motion-reduce:animate-none' />
             <span className='text-[13px] text-[#c9c4e8]'>
               Open to Remote / Hybrid roles
             </span>
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 24 }}
+            initial={reduceMotion ? false : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className='font-display font-bold text-white text-[42px] xs:text-[56px] md:text-[68px] leading-[1.05] [text-shadow:0_4px_40px_rgba(5,6,15,0.85)]'
@@ -62,20 +63,20 @@ const Hero = () => {
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 24 }}
+            initial={reduceMotion ? false : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className='mt-5 text-[18px] md:text-[22px] text-secondary leading-relaxed max-w-xl [text-shadow:0_2px_24px_rgba(5,6,15,0.9)]'
           >
             Software Engineer &amp; AI Engineer — I build{" "}
-            <span className='text-white'>AI voice agents</span>, full-stack
+            <span className='text-gradient-cyan font-semibold'>AI voice agents</span>, full-stack
             applications and{" "}
-            <span className='text-white'>immersive 3D experiences</span> that
+            <span className='text-gradient-lime font-semibold'>immersive 3D experiences</span> that
             solve real-world problems.
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={reduceMotion ? false : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             className='mt-6 flex flex-wrap gap-2'
@@ -91,7 +92,7 @@ const Hero = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={reduceMotion ? false : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             className='mt-8 flex flex-wrap items-center gap-4'
@@ -128,7 +129,7 @@ const Hero = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={reduceMotion ? false : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
             className='mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-xl'

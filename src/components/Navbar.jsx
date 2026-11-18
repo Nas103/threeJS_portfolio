@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { navLinks } from "../constants/index.js";
 import { menu, close } from "../assets";
+import BrandMark from "./BrandMark";
 
 const Navbar = ({ onOpenChat }) => {
   const [scrolled, setScrolled] = useState(false);
@@ -48,13 +49,12 @@ const Navbar = ({ onOpenChat }) => {
               setActive("");
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className='flex items-center gap-3'
+            className='brand-home group flex items-center gap-3'
+            aria-label='Rhulani Mashala home'
           >
-            <div className='w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 via-fuchsia-500 to-cyan-400 flex items-center justify-center font-display font-bold text-white text-lg shadow-glow'>
-              R
-            </div>
+            <BrandMark className='brand-mark--nav' />
             <div className='text-left leading-tight'>
-              <p className='text-white text-[16px] font-bold font-display tracking-wide'>
+              <p className='text-gradient-shine text-[16px] font-bold font-display tracking-wide'>
                 Rhulani Mashala
               </p>
               <p className='text-[10.5px] text-secondary uppercase tracking-[0.22em]'>
